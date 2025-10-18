@@ -1,10 +1,10 @@
 import {Routes, Route} from "react-router-dom";
-import Landing_page from "./Components/Landing_page1";
-import User_interface from "./Components/User_interface";
-import Admin_dashboard from "./Components/Admin_dashboard";
-import User_dashboard from "./Components/User_dashboard";
-import Searched_location from "./Components/Searched_location";
-import Location_search_result from "./Components/Location_search_result";
+import Landing_page from "./Components/Landing_page1.jsx";
+import User_interface from "./Components/User_interface.jsx";
+import Admin_dashboard from "./Components/Admin_dashboard.jsx";
+import User_dashboard from "./Components/User_dashboard.jsx";
+import Searched_location from "./Components/Searched_location.jsx";
+import Location_search_result from "./Components/Location_search_result.jsx";
 import About from "./Components/About";
 import ContactUS from "./Components/ContactUs.jsx";
 import Transporter_dashboard from "./Components/Transporter_dashboard.jsx"; 

@@ -1,0 +1,110 @@
+.landing_page_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.landing_page_navigation {
+    width: 100px;
+    height: 100%;
+    border: 1px solid blue;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.landing_page_NavList {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 10px;
+
+}
+
+.LP_Navlists {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.LandingPage_navbarIcons {
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    color: white;
+
+}
+
+.landing_page_mainContainer {
+    border: 1px dashed black;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    border: 1px solid black;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px dashed black;
+    gap: 15px;
+}
+
+.inside-form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.location-finder-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.search-location-input {
+    width: 250px;
+    padding: 15px 15px;
+    text-align: start;
+}
+
+.submit-location {
+    padding: 15px 15px;
+    cursor: pointer;
+    border: none; 
+}
+
+.car2 {
+    width: 100px;
+    height: 100px;
+}

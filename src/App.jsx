@@ -5,7 +5,7 @@ import Admin_dashboard from "./Components/Admin_dashboard.jsx";
 import User_dashboard from "./Components/User_dashboard.jsx";
 import Searched_location from "./Components/Searched_location.jsx";
 import Location_search_result from "./Components/Location_search_result.jsx";
-import About from "./Components/About";
+import About from "./Components/About_page.jsx";
 import ContactUS from "./Components/ContactUs.jsx";
 import Transporter_dashboard from "./Components/Transporter_dashboard.jsx";
 import PackagesPage from "./Components/PackagesPage.jsx";

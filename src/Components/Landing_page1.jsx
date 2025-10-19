@@ -1,7 +1,16 @@
 import Logo from "./Logo.jsx";
 import "../Styles/Landing_page_test.css";
-import {Link} from "react-router-dom";
-const Landing_page = () => {
+import {Link, useNavigate} from "react-router-dom";
+import profile from "./images/profile.png";
+import rideshare from "./images/rideshare.png";
+import schedule from "./images/schedule.png";
+import maplocation from "./images/map-location.png";
+
+const Landing_page1 = () => {
+    const navigate = useNavigate()
+    const RedirecttoSearchResultPage = () => {
+        navigate("/SearchResult")
+    }
     return (
         <>  
 
@@ -20,12 +29,15 @@ const Landing_page = () => {
                                     How it Works                  
                                 </li>
                               
-                                <li className="LP-navList_Lists">
+                                <Link className="LP-navList_Lists" to="/Available_packages">
                                         Pricing
-                                </li>
-                                <li className="LP-navList_Lists">
+                                </Link>
+                                {/* <li className="LP-navList_Lists">
                                     About
-                                </li>
+                                </li> */}
+                                <Link className="LP-navList_Lists" to="/About">
+                                    About
+                                </Link>
                         </ul>
 
 
@@ -63,15 +75,15 @@ const Landing_page = () => {
                             </p>
                             <div className="LPMS_section1_box1_advantages">
                                     <span className="LPMS_section1_box1_advantages_item1">
-                                            <img  src="" alt="item_image"  classname="LPMS_section1_box1_items_image" />
+                                            <img  src={rideshare} alt="item_image"  className="LPMS_section1_box1_items_image" />
                                             <p classname="LPMS_section1_box1_items_title">Shared Rides</p>
                                     </span>
                                     <span className="LPMS_section1_box1_advantages_item2">
-                                                        <img  src="" alt="item_image"  classname="LPMS_section1_box1_items_image" />
+                                                        <img  src={maplocation} alt="item_image"  className="LPMS_section1_box1_items_image" />
                                             <p classname="LPMS_section1_box1_items_title">Campus Routes</p>
                                     </span>
                                     <span className="LPMS_section1_box1_advantages_item3">
-                                        <img  src="" alt="item_image"  classname="LPMS_section1_box1_items_image" />
+                                        <img  src={schedule} alt="item_image"  className="LPMS_section1_box1_items_image" />
                                             <p classname="LPMS_section1_box1_items_title">Flexible Scheduling</p>
 
                                     </span>
@@ -94,27 +106,32 @@ const Landing_page = () => {
 
                                  <div className="form-group-box2-item1">
                                     <div className="form-group-box2-item1_form-field1">
-                                        <label for="date" className="form-group-box2-item1_form-field1_form_label">Date</label>
+                                        <label htmlFor="date" className="form-group-box2-item1_form-field1_form_label">Date</label>
                                         <input type="date" id="date" name="date" className="form-group-box2-item1_form-field1_form_control"/>
                                     </div>
 
                                     <div className="form-group-box2-item1_form-field2">
-                                        <label for="time" className="form-group-box2-item1_form-field2_from_label">Time</label>
+                                        <label htmlFor="time" className="form-group-box2-item1_form-field2_from_label">Time</label>
                                         <input type="time" id="time" name="time" className="form-group-box2-item1_form-field2_from_control"/>
                                     </div>
                                 </div>
                                  <div className="form-group-box2-item1">
                                     <select name="" id="" className="form-group-box2-item1-rideTypeSelect">
-                                        <option value="" className="form-group-box2-item1-rideTypeSelect-option1" selected disabled>your ride type</option>
+                                        <option value="" className="form-group-box2-item1-rideTypeSelect-option1" defaultValue disabled>your ride type</option>
                                         <option value="" className="form-group-box2-item1-rideTypeSelect-option1">normal</option>
                                         <option value="" className="form-group-box2-item1-rideTypeSelect-option2">vip</option>
                                         <option value="" className="form-group-box2-item1-rideTypeSelect-option3">co-joint</option>
                                     </select>
 
                                 </div>
-                                <button className="LPMS-section1_box2_search_submit_btn">
-                                    Search Available Rides
-                                </button>
+                                <button
+  type="button"
+  className="LPMS-section1_box2_search_submit_btn"
+  onClick={RedirecttoSearchResultPage}
+>
+  Search Available Rides
+</button>
+
                             </form>
                             <p className="LPMS-section1_box2_payment_quote">💳 Payment accepted: Cash or Card</p>
                         </div>
@@ -136,33 +153,39 @@ const Landing_page = () => {
 
                         </div>
                         <div className="LPMS-section2 box2">
-                            <span className="LPMS-section2_box2_1">
-                                <img src="" alt="" className="LPMS-section2_box2_items_image" />
+                            <span className="LPMS-section2_box2_1 LPMS-section2_box2_items">
+                                {/* <img src="" alt="" className="LPMS-section2_box2_items_image" /> */}
+                                <i className="bi bi-people LPMS-section2_box2_items_image"></i>
                                 <h3 className="LPMS-section2_box2_items_title">Campus Community</h3>
                                 <p className="LPMS-section2_box2_items_description">Connect with students and trainers from your institution for shared rides.</p>
                             </span>
-                            <span className="LPMS-section2_box2_2">
-                                <img src="" alt="" className="LPMS-section2_box2_items_image" />
+                            <span className="LPMS-section2_box2_2 LPMS-section2_box2_items">
+                                {/* <img src="" alt="" className="LPMS-section2_box2_items_image" /> */}
+                                <i className="bi bi-geo-alt LPMS-section2_box2_items_image"></i>
                                 <h3 className="LPMS-section2_box2_items_title">Easy Route Planning</h3>
                                 <p className="LPMS-section2_box2_items_description">Search your route and instantly find all available transport options.</p>
                             </span>
-                            <span className="LPMS-section2_box2_3">
-                                <img src="" alt="" className="LPMS-section2_box2_items_image" />
+                            <span className="LPMS-section2_box2_3 LPMS-section2_box2_items">
+                                {/* <img src="" alt="" className="LPMS-section2_box2_items_image" /> */}
+                                <i className="bi bi-file-lock2 LPMS-section2_box2_items_image"></i>
                                 <h3 className="LPMS-section2_box2_items_title">Safe & Verified</h3>
                                 <p className="LPMS-section2_box2_items_description">All users are verified members of your institution for maximum safety.</p>
                             </span>
-                            <span className="LPMS-section2_box2_4">
-                                <img src="" alt="" className="LPMS-section2_box2_items_image" />
+                            <span className="LPMS-section2_box2_4 LPMS-section2_box2_items">
+                                {/* <img src="" alt="" className="LPMS-section2_box2_items_image" /> */}
+                                <i className="bi bi-credit-card LPMS-section2_box2_items_image"></i>
                                 <h3 className="LPMS-section2_box2_items_title">Flexible Payment</h3>
                                 <p className="LPMS-section2_box2_items_description">Get live updates on transport availability and departure times.</p>
                             </span>
-                            <span className="LPMS-section2_box2_5">
-                                <img src="" alt="" className="LPMS-section2_box2_items_image" />
+                            <span className="LPMS-section2_box2_5 LPMS-section2_box2_items">
+                                {/* <img src="" alt="" className="LPMS-section2_box2_items_image" /> */}
+                                <i className="bi bi-clock LPMS-section2_box2_items_image"></i>
                                 <h3 className="LPMS-section2_box2_items_title">Real-time Updates</h3>
                                 <p className="LPMS-section2_box2_items_description">Connect with students and trainers from your institution for shared rides.</p>
                             </span>
-                            <span className="LPMS-section2_box2_6">
-                                <img src="" alt="" className="LPMS-section2_box2_items_image" />
+                            <span className="LPMS-section2_box2_6 LPMS-section2_box2_items">
+                                {/* <img src="" alt="" className="LPMS-section2_box2_items_image" /> */}
+                                <i className="bi bi-phone LPMS-section2_box2_items_image"></i>
                                 <h3 className="LPMS-section2_box2_items_title">Mobile & Desktop</h3>
                                 <p className="LPMS-section2_box2_items_description">Access from any device - smartphone, tablet, or computer.</p>
                             </span>
@@ -253,20 +276,20 @@ const Landing_page = () => {
                                         <span className="LPMS-section3_box2_items3">
                                             <ul className="LPMS-section3_box2_items3_listDescription">
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Comfortable seating
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Comfortable seating
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Direct route
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Direct route
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Standard service
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Standard service
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                     <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                   Real-time tracking
+                                                     {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Real-time tracking
                                                 </li>
                                             </ul>
                                         </span>
@@ -288,24 +311,24 @@ const Landing_page = () => {
                                         <span className="LPMS-section3_box2_items3">
                                             <ul className="LPMS-section3_box2_items3_listDescription">
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Premium vehicles
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Premium vehicles
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Priority service
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Priority service
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Extra comfort
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Extra comfort
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                     <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                   Professional drivers
+                                                     {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Professional drivers
                                                 </li>
                                                  <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                     <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                   Climate control
+                                                     {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Climate control
                                                 </li>
                                             </ul>
                                         </span>
@@ -326,20 +349,20 @@ const Landing_page = () => {
                                         <span className="LPMS-section3_box2_items3">
                                             <ul className="LPMS-section3_box2_items3_listDescription">
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Most affordable option
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Most affordable option
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Eco-friendly
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Eco-friendly
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                    <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                    Meet fellow students
+                                                    {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Meet fellow students
                                                 </li>
                                                 <li className="LPMS-section3_box2_items3_listDescription_list">
-                                                     <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" />
-                                                   Similar routes
+                                                     {/* <img src="" alt="" className="LPMS-section3_box2_items3_list_checkbox" /> */}
+                                                    ✅ Similar routes
                                                 </li>
                                                
                                             </ul>
@@ -357,7 +380,9 @@ const Landing_page = () => {
                              
                         <h3 className="LPMS-section_section4_title">Want to Save More?</h3>
                         <p className="LPMS-section_section4_description">Check out our prepaid packages with daily, monthly, and yearly credits at discounted rates</p>
-                        <button className="LPMS-section_section4_button">View Prepaid Packages</button>
+                        <button className="LPMS-section_section4_button">
+                            <Link to="/Available_packages">View Prepaid Packages</Link>
+                        </button>
 
                     </span>
 
@@ -385,7 +410,7 @@ const Landing_page = () => {
                                 </span>
                                 <span className="LPMS-section_section5_items_part2_box1_testimonial_profile">
                                     <span className="LPMS-section_section5_items_part2_box1_testimonial_profile_picture">
-                                        <img src="" alt="" className="testimonial_profile_picture" />
+                                        <img src={profile} alt="" className="testimonial_profile_picture" />
                                     </span>
                                     <span>
                                         <h3 className="LPMS-section_section5_items_part2_box1_testimonial_profile_name">
@@ -413,7 +438,7 @@ const Landing_page = () => {
                                 </span>
                                 <span className="LPMS-section_section5_items_part2_box1_testimonial_profile">
                                     <span className="LPMS-section_section5_items_part2_box1_testimonial_profile_picture">
-                                        <img src="" alt="" className="testimonial_profile_picture" />
+                                        <img src={profile} alt="" className="testimonial_profile_picture" />
                                     </span>
                                     <span>
                                         <h3 className="LPMS-section_section5_items_part2_box1_testimonial_profile_name">
@@ -441,7 +466,7 @@ const Landing_page = () => {
                                 </span>
                                 <span className="LPMS-section_section5_items_part2_box1_testimonial_profile">
                                     <span className="LPMS-section_section5_items_part2_box1_testimonial_profile_picture">
-                                        <img src="" alt="" className="testimonial_profile_picture" />
+                                        <img src={profile} alt="" className="testimonial_profile_picture" />
                                     </span>
                                     <span>
                                         <h3 className="LPMS-section_section5_items_part2_box1_testimonial_profile_name">
@@ -467,7 +492,7 @@ const Landing_page = () => {
                                 </span>
                                 <span className="LPMS-section_section5_items_part2_box1_testimonial_profile">
                                     <span className="LPMS-section_section5_items_part2_box1_testimonial_profile_picture">
-                                        <img src="" alt="" className="testimonial_profile_picture" />
+                                        <img src={profile} alt="" className="testimonial_profile_picture" />
                                     </span>
                                     <span>
                                         <h3 className="LPMS-section_section5_items_part2_box1_testimonial_profile_name">
@@ -498,7 +523,7 @@ const Landing_page = () => {
       <div className="logo">
         <Logo />
       </div>
-      <p className="footer-about-text">
+      <p className="footer-about-quote">
         Smart collective transport solution for students and staff. Connecting campus communities
         through safe, affordable, and eco-friendly transportation options.
       </p>
@@ -528,7 +553,7 @@ const Landing_page = () => {
         <li><a href="#">About Us</a></li>
         <li><a href="#">FAQs</a></li>
         <li><a href="#">Testimonials</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li><Link to="/ContactUS">Contact us</Link></li>
       </ul>
     </div>
 
@@ -632,4 +657,4 @@ const Landing_page = () => {
     )
 }
 
-export default Landing_page
+export default Landing_page1

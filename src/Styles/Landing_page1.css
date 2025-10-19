@@ -78,6 +78,10 @@ nav {
 
 /* search form */
 
+.LPMS_section1_box1_items_image {
+  width: 150px;
+  height: 150px;
+}
 
 .form-group-box2-item1 {
   display: flex;
@@ -142,4 +146,13 @@ nav {
     border: 3px solid green;
     width: 100%;
     min-height: 20%;
+}
+
+.LPMS-section2 {
+  border: 1px solid black;
+}
+
+.LPMS-section2_box2_items_image {
+  background-color: black;
+  border: 1px dashed black;
 }

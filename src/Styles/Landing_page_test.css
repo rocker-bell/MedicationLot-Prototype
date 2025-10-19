@@ -282,18 +282,47 @@ nav {
 }
 
 .LPMS-section2.box2 {
+  /* border: 1px solid black; */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  grid-template-columns: repeat(3, 1fr);
+
+
   gap: 2rem;
   margin-bottom: 3rem;
 }
 
-.LPMS-section2_box2_items_image {
-  width: 60px;
-  height: 60px;
+/* .LPMS-section2_box2_items_image {
+  width: 150px;
+  height: 150px;
   margin-bottom: 1rem;
   object-fit: contain;
+  border: 1px solid black;
+} */
+
+.LPMS-section2_box2_items {
+  /* border: 1px solid black; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  cursor: pointer;
+  padding: 5px 5px;
 }
+
+.LPMS-section2_box2_items:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: scale(1.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.LPMS-section2_box2_items_image {
+  font-size: 2rem; /* Adjust size of icon */
+  color: #333; /* Or your primary color */
+  margin-bottom: 1rem;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
 
 /* .LPMS-section2_box2_items_title {
   font-size: 1.3rem;

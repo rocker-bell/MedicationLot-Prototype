@@ -307,37 +307,464 @@
 // export default User_interface;
 
 
+// import { useState, useRef, useEffect } from "react";
+// import { Link } from "react-router-dom";
+// import "../Styles/User_interface.css";
+
+// const User_interface = () => {
+//   const [isLoginActive, setIsLoginActive] = useState(true);
+//   const [startX, setStartX] = useState(0);
+//   const containerRef = useRef(null);
+
+//   // Handle swipe gestures
+//   const handleTouchStart = (e) => {
+//     setStartX(e.touches[0].clientX);
+//   };
+
+//   const handleTouchMove = (e) => {
+//     if (!startX) return;
+
+//     const currentX = e.touches[0].clientX;
+//     const diff = startX - currentX;
+
+//     // Only trigger swipe if moved significantly
+//     if (diff > 50 && isLoginActive) { // Swipe left to show register
+//       setIsLoginActive(false);
+//     } else if (diff < -50 && !isLoginActive) { // Swipe right to show login
+//       setIsLoginActive(true);
+//     }
+
+//     setStartX(0); // Reset touch position
+//   };
+
+//   // Update container position when active form changes
+//   useEffect(() => {
+//     if (containerRef.current) {
+//       containerRef.current.style.transition = "transform 0.6s ease-in-out";
+//       containerRef.current.style.transform = isLoginActive
+//         ? "translateX(0)"
+//         : "translateX(-50%)";
+//     }
+//   }, [isLoginActive]);
+
+//   return (
+//     <div className="user_interfaceWrapper">
+//       <Link to="/" className="back-link">← Back to Home</Link>
+
+//       <div className="ContainerLogin_register">
+//         {/* Toggle buttons */}
+//         <div className="toggle-container">
+//           <button
+//             className={`toggle-btn ${isLoginActive ? "active" : ""}`}
+//             onClick={() => setIsLoginActive(true)}
+//           >
+//             Login
+//           </button>
+//           <button
+//             className={`toggle-btn ${!isLoginActive ? "active" : ""}`}
+//             onClick={() => setIsLoginActive(false)}
+//           >
+//             Register
+//           </button>
+//         </div>
+
+//         {/* Swipeable container */}
+//         <div
+//           className="login_register_container"
+//           ref={containerRef}
+//           onTouchStart={handleTouchStart}
+//           onTouchMove={handleTouchMove}
+//         >
+//           {/* Login Form */}
+//           <div className="user_interfaceLogin">
+//             <h3>Welcome Back</h3>
+//             <form className="user_interfaceLoginForm">
+//               <div className="form-group">
+//                 <label htmlFor="loginEmail" className="form-label">Email</label>
+//                 <input
+//                   type="email"
+//                   id="loginEmail"
+//                   className="form-control"
+//                   placeholder="Enter your email"
+//                   required
+//                 />
+//               </div>
+//               <div className="form-group">
+//                 <label htmlFor="loginPassword" className="form-label">Password</label>
+//                 <input
+//                   type="password"
+//                   id="loginPassword"
+//                   className="form-control"
+//                   placeholder="Enter your password"
+//                   required
+//                 />
+//               </div>
+//               <button type="submit" className="submit-btn submit-login-password">
+//                 Sign In
+//               </button>
+//             </form>
+//           </div>
+
+//           {/* Register Form */}
+//           <div className="user_interfaceRegister">
+//             <h3>Create Account</h3>
+//             <form className="user_interfaceRegisterForm">
+//               <div className="form-group">
+//                 <label htmlFor="registerEmail" className="form-label">Email</label>
+//                 <input
+//                   type="email"
+//                   id="registerEmail"
+//                   className="form-control"
+//                   placeholder="Enter your email"
+//                   required
+//                 />
+//               </div>
+//               <div className="form-group">
+//                 <label htmlFor="registerPassword" className="form-label">Password</label>
+//                 <input
+//                   type="password"
+//                   id="registerPassword"
+//                   className="form-control"
+//                   placeholder="Create a password"
+//                   required
+//                 />
+//               </div>
+//               <button type="submit" className="submit-btn submit-Register-password">
+//                 Register
+//               </button>
+//             </form>
+//           </div>
+//         </div>
+
+//         {/* Swipe indicator */}
+//         <div className="swipe-indicator">
+//           <span>Swipe {isLoginActive ? "left" : "right"}</span>
+//           <div className="swipe-dots">
+//             <div className={`swipe-dot ${isLoginActive ? "active" : ""}`}></div>
+//             <div className={`swipe-dot ${!isLoginActive ? "active" : ""}`}></div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default User_interface;
+
+
+
+// import { useState, useRef, useEffect } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+//  // Make sure this path is correct
+//  import { createClient } from "@supabase/supabase-js";
+// import "../Styles/User_interface.css";
+
+// // Supabase setup
+// const supabaseUrl = 'https://xdbhtxoheaqgrbruapxv.supabase.co';
+// const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkYmh0eG9oZWFxZ3JicnVhcHh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5NjQ1MjgsImV4cCI6MjA3NTU0MDUyOH0.kJIhesOoD7DYbR2ggSkxZO3w5VTECuLHGNztmwIs7PA';
+// const supabase = createClient(supabaseUrl, supabaseKey);
+
+// const User_interface = () => {
+//   const navigate = useNavigate();
+//   const [isLoginActive, setIsLoginActive] = useState(true);
+//   const [startX, setStartX] = useState(0);
+//   const containerRef = useRef(null);
+
+
+
+
+//   // Input states
+//   const [loginEmail, setLoginEmail] = useState("");
+//   const [loginPassword, setLoginPassword] = useState("");
+//   const [registerEmail, setRegisterEmail] = useState("");
+//   const [registerPassword, setRegisterPassword] = useState("");
+//   const [registerUsername, setRegisterUsername] = useState("");
+
+
+//   // Error / status messages
+//   const [message, setMessage] = useState("");
+
+//   // Swipe handlers
+//   const handleTouchStart = (e) => setStartX(e.touches[0].clientX);
+//   const handleTouchMove = (e) => {
+//     if (!startX) return;
+//     const currentX = e.touches[0].clientX;
+//     const diff = startX - currentX;
+
+//     if (diff > 50 && isLoginActive) setIsLoginActive(false);
+//     else if (diff < -50 && !isLoginActive) setIsLoginActive(true);
+//     setStartX(0);
+//   };
+
+//   // Update container transform
+//   useEffect(() => {
+//     if (containerRef.current) {
+//       containerRef.current.style.transition = "transform 0.6s ease-in-out";
+//       containerRef.current.style.transform = isLoginActive
+//         ? "translateX(0)"
+//         : "translateX(-50%)";
+//     }
+//   }, [isLoginActive]);
+
+//   // 🔐 Handle Login
+//   // const handleLogin = async (e) => {
+//   //   e.preventDefault();
+//   //   setMessage("");
+
+//   //   const { data, error } = await supabase
+//   //     .from("admin_test")
+//   //     .select("*")
+//   //     .eq("email", loginEmail)
+//   //     .eq("password", loginPassword) // ⚠️ Not secure in production!
+//   //     .single();
+
+//   //   if (error || !data) {
+//   //     setMessage("Invalid credentials. Please try again.");
+//   //   } else {
+//   //     setMessage("Login successful!");
+//   //     navigate("/dashboard")
+
+
+//   //     // Optionally redirect or store auth state
+//   //   }
+//   // };
+
+//   const handleLogin = async (e) => {
+//   e.preventDefault();
+//   setMessage("");
+
+//   const { data, error } = await supabase
+//     .from("admin_test")
+//     .select("*")
+//     .eq("email", loginEmail)
+//     .eq("password", loginPassword)  // ⚠️ Never store plain text passwords in production!
+//     .single(); // Ensures you get exactly one match or an error
+
+//   if (error) {
+//     setMessage("Invalid login or server error.");
+//     console.error(error);
+    
+//   } else {
+//     setMessage("Login successful!");
+//     console.log("Logged in user:", data);
+//     navigate("/dashboard")
+//   }
+// };
+
+// const { data, error } = await supabase
+//     .from("register")
+//     .select("*")
+//     .eq("email", loginEmail)
+//     .eq("password", loginPassword)  // ⚠️ Never store plain text passwords in production!
+//     .single(); // Ensures you get exactly one match or an error
+
+//   if (error) {
+//     setMessage("Invalid login or server error.");
+//     console.error(error);
+    
+//   } else {
+//     setMessage("Login successful!");
+//     console.log("Logged in user:", data);
+//     navigate("/dashboard")
+//   }
+// };
+
+
+//   // 🆕 Handle Register
+//   // const handleRegister = async (e) => {
+//   //   e.preventDefault();
+//   //   setMessage("");
+
+//   //   const { data, error } = await supabase
+//   //     .from("register")
+//   //     .insert([{ email: registerEmail, password: registerPassword }]);
+
+//   //   if (error) {
+//   //     setMessage("Registration failed. Try a different email.");
+//   //   } else {
+//   //     setMessage("Registered successfully! You can now log in.");
+//   //     setIsLoginActive(true); // Switch to login form
+//   //   }
+//   // };
+//   const handleRegister = async (e) => {
+//   e.preventDefault();
+//   setMessage("");
+
+//   const { data, error } = await supabase
+//     .from("register")  // or your actual table name, e.g. admin_test
+//     .insert([{ 
+//       username: registerUsername, 
+//       email: registerEmail, 
+//       password: registerPassword 
+//     }]);
+
+//   if (error) {
+//     setMessage("Registration failed. Try a different email or username.");
+//   } else {
+//     setMessage("Registered successfully! You can now log in.");
+//     setIsLoginActive(true); // Switch to login form
+
+//     // Optionally clear inputs
+//     setRegisterUsername("");
+//     setRegisterEmail("");
+//     setRegisterPassword("");
+//   }
+// };
+
+
+//   return (
+//     <div className="user_interfaceWrapper">
+//       <Link to="/" className="back-link">← Back to Home</Link>
+
+//       <div className="ContainerLogin_register">
+//         <div className="toggle-container">
+//           <button className={`toggle-btn ${isLoginActive ? "active" : ""}`} onClick={() => setIsLoginActive(true)}>Login</button>
+//           <button className={`toggle-btn ${!isLoginActive ? "active" : ""}`} onClick={() => setIsLoginActive(false)}>Register</button>
+//         </div>
+
+//         <div
+//           className="login_register_container"
+//           ref={containerRef}
+//           onTouchStart={handleTouchStart}
+//           onTouchMove={handleTouchMove}
+//         >
+//           {/* Login Form */}
+//           <div className="user_interfaceLogin">
+//             <h3>Welcome Back</h3>
+//             <form className="user_interfaceLoginForm" onSubmit={handleLogin}>
+//               <div className="form-group">
+//                 <label htmlFor="loginEmail" className="form-label">Email</label>
+//                 <input
+//                   type="email"
+//                   id="loginEmail"
+//                   className="form-control"
+//                   placeholder="Enter your email"
+//                   value={loginEmail}
+//                   onChange={(e) => setLoginEmail(e.target.value)}
+//                   required
+//                 />
+//               </div>
+//               <div className="form-group">
+//                 <label htmlFor="loginPassword" className="form-label">Password</label>
+//                 <input
+//                   type="password"
+//                   id="loginPassword"
+//                   className="form-control"
+//                   placeholder="Enter your password"
+//                   value={loginPassword}
+//                   onChange={(e) => setLoginPassword(e.target.value)}
+//                   required
+//                 />
+//               </div>
+//               <button type="submit" className="submit-btn submit-login-password">Sign In</button>
+//             </form>
+//           </div>
+
+//           {/* Register Form */}
+//           <div className="user_interfaceRegister">
+//   <h3>Create Account</h3>
+//   <form className="user_interfaceRegisterForm" onSubmit={handleRegister}>
+//     <div className="form-group">
+//       <label htmlFor="registerUsername" className="form-label">Username</label>
+//       <input
+//         type="text"
+//         id="registerUsername"
+//         className="form-control"
+//         placeholder="Enter your username"
+//         value={registerUsername}
+//         onChange={(e) => setRegisterUsername(e.target.value)}
+//         required
+//       />
+//     </div>
+//     <div className="form-group">
+//       <label htmlFor="registerEmail" className="form-label">Email</label>
+//       <input
+//         type="email"
+//         id="registerEmail"
+//         className="form-control"
+//         placeholder="Enter your email"
+//         value={registerEmail}
+//         onChange={(e) => setRegisterEmail(e.target.value)}
+//         required
+//       />
+//     </div>
+//     <div className="form-group">
+//       <label htmlFor="registerPassword" className="form-label">Password</label>
+//       <input
+//         type="password"
+//         id="registerPassword"
+//         className="form-control"
+//         placeholder="Create a password"
+//         value={registerPassword}
+//         onChange={(e) => setRegisterPassword(e.target.value)}
+//         required
+//       />
+//     </div>
+//     <button type="submit" className="submit-btn submit-Register-password">Register</button>
+//   </form>
+// </div>
+
+//         </div>
+
+//         {/* Swipe indicator */}
+//         <div className="swipe-indicator">
+//           <span>Swipe {isLoginActive ? "left" : "right"}</span>
+//           <div className="swipe-dots">
+//             <div className={`swipe-dot ${isLoginActive ? "active" : ""}`}></div>
+//             <div className={`swipe-dot ${!isLoginActive ? "active" : ""}`}></div>
+//           </div>
+//         </div>
+
+//         {/* Feedback message */}
+//         {message && <div className="form-message">{message}</div>}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default User_interface;
+
+
+
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
 import "../Styles/User_interface.css";
 
+// Supabase setup
+const supabaseUrl = 'https://xdbhtxoheaqgrbruapxv.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkYmh0eG9oZWFxZ3JicnVhcHh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5NjQ1MjgsImV4cCI6MjA3NTU0MDUyOH0.kJIhesOoD7DYbR2ggSkxZO3w5VTECuLHGNztmwIs7PA'; // keep this secure!
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 const User_interface = () => {
+  const navigate = useNavigate();
   const [isLoginActive, setIsLoginActive] = useState(true);
   const [startX, setStartX] = useState(0);
   const containerRef = useRef(null);
 
-  // Handle swipe gestures
-  const handleTouchStart = (e) => {
-    setStartX(e.touches[0].clientX);
-  };
+  // Input states
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
+  // Message state
+  const [message, setMessage] = useState("");
+
+  // Swipe handlers
+  const handleTouchStart = (e) => setStartX(e.touches[0].clientX);
   const handleTouchMove = (e) => {
     if (!startX) return;
-
     const currentX = e.touches[0].clientX;
     const diff = startX - currentX;
 
-    // Only trigger swipe if moved significantly
-    if (diff > 50 && isLoginActive) { // Swipe left to show register
-      setIsLoginActive(false);
-    } else if (diff < -50 && !isLoginActive) { // Swipe right to show login
-      setIsLoginActive(true);
-    }
-
-    setStartX(0); // Reset touch position
+    if (diff > 50 && isLoginActive) setIsLoginActive(false);
+    else if (diff < -50 && !isLoginActive) setIsLoginActive(true);
+    setStartX(0);
   };
 
-  // Update container position when active form changes
+  // Animate container transform on toggle
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.style.transition = "transform 0.6s ease-in-out";
@@ -347,12 +774,97 @@ const User_interface = () => {
     }
   }, [isLoginActive]);
 
+  // Handle Login
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   setMessage("");
+
+  //   const { data, error } = await supabase
+  //     .from("admin_test") // Make sure this matches your login table!
+  //     .select("*")
+  //     .eq("email", loginEmail)
+  //     .eq("password", loginPassword)  // ⚠️ This is insecure for production
+  //     .single();
+
+  //   if (error || !data) {
+  //     setMessage("Invalid login or server error.");
+  //     console.error(error);
+  //   } else {
+  //     setMessage("Login successful!");
+  //     console.log("Logged in user:", data);
+  //     navigate("/dashboard");
+  //   }
+  // };
+
+
+  const handleLogin = async (e) => {
+  e.preventDefault();
+  setMessage("");
+
+  // Check first table
+  let { data, error } = await supabase
+    .from("admin_test")
+    .select("*")
+    .eq("email", loginEmail)
+    .eq("password", loginPassword)  // ⚠️ Plain text passwords are insecure
+    .single();
+
+  // If not found in first table, check second table
+  if (error || !data) {
+    ({ data, error } = await supabase
+      .from("register")
+      .select("*")
+      .eq("email", loginEmail)
+      .eq("password", loginPassword)
+      .single());
+  }
+
+  if (error || !data) {
+    setMessage("Invalid login or server error.");
+    console.error(error);
+  } else {
+    setMessage("Login successful!");
+    console.log("Logged in user:", data);
+    navigate("/dashboard");
+  }
+};
+
+
+
+
+
+  // Handle Register
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setMessage("");
+
+    const { data, error } = await supabase
+      .from("register") // Make sure this matches your registration table!
+      .insert([{ 
+        username: registerUsername, 
+        email: registerEmail, 
+        password: registerPassword 
+      }]);
+
+    if (error) {
+      setMessage("Registration failed. Try a different email or username.");
+      console.error(error);
+    } else {
+      setMessage("Registered successfully! You can now log in.");
+      setIsLoginActive(true); // Switch to login form
+
+      // Clear inputs
+      setRegisterUsername("");
+      setRegisterEmail("");
+      setRegisterPassword("");
+    }
+  };
+
   return (
     <div className="user_interfaceWrapper">
       <Link to="/" className="back-link">← Back to Home</Link>
 
       <div className="ContainerLogin_register">
-        {/* Toggle buttons */}
         <div className="toggle-container">
           <button
             className={`toggle-btn ${isLoginActive ? "active" : ""}`}
@@ -368,7 +880,6 @@ const User_interface = () => {
           </button>
         </div>
 
-        {/* Swipeable container */}
         <div
           className="login_register_container"
           ref={containerRef}
@@ -378,7 +889,7 @@ const User_interface = () => {
           {/* Login Form */}
           <div className="user_interfaceLogin">
             <h3>Welcome Back</h3>
-            <form className="user_interfaceLoginForm">
+            <form className="user_interfaceLoginForm" onSubmit={handleLogin}>
               <div className="form-group">
                 <label htmlFor="loginEmail" className="form-label">Email</label>
                 <input
@@ -386,6 +897,8 @@ const User_interface = () => {
                   id="loginEmail"
                   className="form-control"
                   placeholder="Enter your email"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
                   required
                 />
               </div>
@@ -396,19 +909,31 @@ const User_interface = () => {
                   id="loginPassword"
                   className="form-control"
                   placeholder="Enter your password"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
                   required
                 />
               </div>
-              <button type="submit" className="submit-btn submit-login-password">
-                Sign In
-              </button>
+              <button type="submit" className="submit-btn submit-login-password">Sign In</button>
             </form>
           </div>
 
           {/* Register Form */}
           <div className="user_interfaceRegister">
             <h3>Create Account</h3>
-            <form className="user_interfaceRegisterForm">
+            <form className="user_interfaceRegisterForm" onSubmit={handleRegister}>
+              <div className="form-group">
+                <label htmlFor="registerUsername" className="form-label">Username</label>
+                <input
+                  type="text"
+                  id="registerUsername"
+                  className="form-control"
+                  placeholder="Enter your username"
+                  value={registerUsername}
+                  onChange={(e) => setRegisterUsername(e.target.value)}
+                  required
+                />
+              </div>
               <div className="form-group">
                 <label htmlFor="registerEmail" className="form-label">Email</label>
                 <input
@@ -416,6 +941,8 @@ const User_interface = () => {
                   id="registerEmail"
                   className="form-control"
                   placeholder="Enter your email"
+                  value={registerEmail}
+                  onChange={(e) => setRegisterEmail(e.target.value)}
                   required
                 />
               </div>
@@ -426,12 +953,12 @@ const User_interface = () => {
                   id="registerPassword"
                   className="form-control"
                   placeholder="Create a password"
+                  value={registerPassword}
+                  onChange={(e) => setRegisterPassword(e.target.value)}
                   required
                 />
               </div>
-              <button type="submit" className="submit-btn submit-Register-password">
-                Register
-              </button>
+              <button type="submit" className="submit-btn submit-Register-password">Register</button>
             </form>
           </div>
         </div>
@@ -444,6 +971,9 @@ const User_interface = () => {
             <div className={`swipe-dot ${!isLoginActive ? "active" : ""}`}></div>
           </div>
         </div>
+
+        {/* Feedback message */}
+        {message && <div className="form-message">{message}</div>}
       </div>
     </div>
   );

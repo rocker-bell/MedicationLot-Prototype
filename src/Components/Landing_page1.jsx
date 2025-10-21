@@ -1,3 +1,8 @@
+
+import React, { useEffect, useState } from "react";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import Logo from "./Logo.jsx";
 import "../Styles/Landing_page_test.css";
 import {Link, useNavigate} from "react-router-dom";
@@ -8,9 +13,37 @@ import maplocation from "./images/map-location.png";
 
 const Landing_page1 = () => {
     const navigate = useNavigate()
-    const RedirecttoSearchResultPage = () => {
-        navigate("/SearchResult")
-    }
+      const [formData, setFormData] = useState({
+    departure: "",
+    destination: "",
+    date: null,
+    time: "",
+    rideType: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // const RedirecttoSearchResultPage = () => {
+  //   navigate("/SearchResult", { state: formData });
+  // };
+
+  const RedirecttoSearchResultPage = () => {
+  const formattedDate = formData.date 
+    ? formData.date.toISOString().slice(0, 10) // "YYYY-MM-DD"
+    : "";
+
+  navigate("/SearchResult", { 
+    state: { 
+      ...formData, 
+      date: formattedDate 
+    } 
+  });
+};
+
+    
     return (
         <>  
 
@@ -90,7 +123,7 @@ const Landing_page1 = () => {
                             </div>
                         </div>
                         <div className="LPMS-section1 box2">
-                            <form action="" className="LPMS-section1_box2_item1">
+                            {/* <form action="" className="LPMS-section1_box2_item1">
                                 <h3 className="LPMS-section1_box2_item1_title">Plan Your Trip</h3>
 
                                 <div className="form-group-box2-item1">
@@ -132,7 +165,90 @@ const Landing_page1 = () => {
   Search Available Rides
 </button>
 
-                            </form>
+                            </form> */}
+
+                            <form className="LPMS-section1_box2_item1">
+        <h3 className="LPMS-section1_box2_item1_title">Plan Your Trip</h3>
+
+        <div className="form-group-box2-item1">
+          <label className="form-label-box2-items">Departure Location</label>
+          <input
+            type="text"
+            className="form-control-box2-items"
+            placeholder="Enter starting point"
+            name="departure"
+            value={formData.departure}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group-box2-item1">
+          <label className="form-label-box2-items">Destination</label>
+          <input
+            type="text"
+            className="form-control-box2-items"
+            placeholder="Enter destination"
+            name="destination"
+            value={formData.destination}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group-box2-item1">
+          <div className="form-group-box2-item1_form-field1">
+            <label htmlFor="date" className="form-group-box2-item1_form-field1_form_label">Date</label>
+            {/* <input
+              type="date"
+              id="date"
+              name="date"
+              className="form-group-box2-item1_form-field1_form_control"
+              value={formData.date}
+              onChange={handleChange}
+            /> */}
+            <DatePicker
+  selected={formData.date}
+  onChange={(date) => setFormData({ ...formData, date })}
+  dateFormat="yyyy-MM-dd"
+/>
+          </div>
+
+          <div className="form-group-box2-item1_form-field2">
+            <label htmlFor="time" className="form-group-box2-item1_form-field2_from_label">Time</label>
+            <input
+              type="time"
+              id="time"
+              name="time"
+              className="form-group-box2-item1_form-field2_from_control"
+              value={formData.time}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="form-group-box2-item1">
+          <select
+            name="rideType"
+            value={formData.rideType}
+            onChange={handleChange}
+            className="form-group-box2-item1-rideTypeSelect"
+          >
+            <option value="" disabled>
+              your ride type
+            </option>
+            <option value="normal">normal</option>
+            <option value="vip">vip</option>
+            <option value="co-joint">co-joint</option>
+          </select>
+        </div>
+
+        <button
+          type="button"
+          className="LPMS-section1_box2_search_submit_btn"
+          onClick={RedirecttoSearchResultPage}
+        >
+          Search Available Rides
+        </button>
+      </form>
                             <p className="LPMS-section1_box2_payment_quote">💳 Payment accepted: Cash or Card</p>
                         </div>
 

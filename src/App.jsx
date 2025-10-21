@@ -10,13 +10,16 @@ import ContactUS from "./Components/ContactUs.jsx";
 import Transporter_dashboard from "./Components/Transporter_dashboard.jsx";
 import PackagesPage from "./Components/PackagesPage.jsx";
 import Search_results from "./Components/Search_results.jsx";
-
+import Dashboard from "./Components/user_dashboard1.jsx";
+import SearchLocation from "./Components/search_location.jsx";
 const App = () => {
   return (
     <>
         <Routes>
             <Route path="/" element={<Landing_page1/>} />
             <Route path="/SearchResult" element={<Search_results/>} />
+            <Route path="SearchLocation" element={<SearchLocation/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/user_interface" element={<User_interface/>}/>
             <Route path="/Admin_dashboard" element={<Admin_dashboard/>}/>
             <Route path="/User_dashboard" element={<User_dashboard/>}/>

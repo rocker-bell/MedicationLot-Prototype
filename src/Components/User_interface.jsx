@@ -727,7 +727,7 @@
 
 
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import "../Styles/User_interface.css";
 
@@ -738,7 +738,11 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const User_interface = () => {
   const navigate = useNavigate();
-  const [isLoginActive, setIsLoginActive] = useState(true);
+  const location = useLocation();
+  
+
+  const initialRegisterActive = location.state?.registerActive || false;
+  const [isLoginActive, setIsLoginActive] = useState(!initialRegisterActive);
   const [startX, setStartX] = useState(0);
   const containerRef = useRef(null);
 

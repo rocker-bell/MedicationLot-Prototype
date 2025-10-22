@@ -43,6 +43,10 @@ const Landing_page1 = () => {
   });
 };
 
+ const handleGetStartedClick = () => {
+    navigate("/user_interface", { state: { registerActive: true } });
+  };
+
     
     return (
         <>  
@@ -78,7 +82,7 @@ const Landing_page1 = () => {
                                     <Link to="/user_interface" className="LP-navList_Lists">
                                     Sign in
                                 </Link>
-                                <li className="LP-navList_Lists LP-navList-right-GetStarted">
+                                <li className="LP-navList_Lists LP-navList-right-GetStarted" onClick={handleGetStartedClick}>
                                     Get Started
                                 </li>
 

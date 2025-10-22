@@ -12,6 +12,7 @@ import PackagesPage from "./Components/PackagesPage.jsx";
 import Search_results from "./Components/Search_results.jsx";
 import Dashboard from "./Components/user_dashboard1.jsx";
 import SearchLocation from "./Components/search_location.jsx";
+import Payment_page from "./Components/payment_page.jsx";
 const App = () => {
   return (
     <>
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/Available_packages" element={< PackagesPage/>} />
             <Route path="/ContactUS" element={< ContactUS/>}  />
               <Route path="/Transporter_dashboard" element={<Transporter_dashboard/>} />
+              <Route path="/Payment_page" element={<Payment_page/>} />
         </Routes>
     </>
   )

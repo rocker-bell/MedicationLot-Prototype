@@ -1,8 +1,18 @@
 import React from "react";
 import "../Styles/About2.css";
-import Logo from "./Logo.jsx"
+import Logo from "./Logo.jsx";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function About() {
+      const navigate = useNavigate()
+  const handleGetStartedClick = () => {
+      navigate("/user_interface", { state: { registerActive: true } });
+  }
+
+  const handleSignInclick = () => {
+      navigate("/user_interface")
+  }
+
   return (
     <div className="rideconnect">
       {/* Navbar */}
@@ -11,15 +21,17 @@ export default function About() {
           <Logo/>
         </div>
         <div className="nav-center">
-          <a href="#">Home</a>
+          <a href="/">Home</a>
           <a href="#">How It Works</a>
-          <a href="#">Pricing</a>
-          <a href="#">Packages</a>
-          <a href="#">About</a>
+          <a href="/Available_packages">Pricing</a>
+         
+          <a  className="active">About</a>
         </div>
         <div className="nav-right">
-          <button className="signin">Sign In</button>
-          <button className="getstarted">Get Started</button>
+          <button  className='signin signin-register-link' onClick={handleSignInclick}>Sign In</button>
+          <button  className="getstarted signin-register-link" onClick={handleGetStartedClick}>Get Started</button>
+          {/* <button className="signin">Sign In</button>
+          <button className="getstarted">Get Started</button> */}
         </div>
       </nav>
 

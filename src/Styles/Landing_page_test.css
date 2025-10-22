@@ -55,6 +55,8 @@ nav {
   font-weight: 500;
   color: var(--dark-text);
   transition: all 0.3s ease;
+  list-style: none;
+  text-decoration: none;
 }
 
 .LP-navList_Lists:hover {

@@ -191,6 +191,7 @@ import { useLocation } from "react-router-dom";
 import "../Styles/Search_results.css";
 import { FaSearch, FaPlay } from "react-icons/fa";
 import { createClient } from "@supabase/supabase-js";
+import { useNavigate } from "react-router-dom";
 
 // Supabase setup
 const supabaseUrl = 'https://xdbhtxoheaqgrbruapxv.supabase.co';
@@ -198,6 +199,10 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const Search_results = () => {
+  const navigate = useNavigate()
+  const handlereserve = () => {
+        navigate("/Payment_page")
+  }
   const { state } = useLocation();
 
   // Local form state initialized from route state or defaults
@@ -257,7 +262,7 @@ const Search_results = () => {
     <div className="transportation-page">
       <header className="transportation-header">
         <div className="header-bar">
-          <a href="/">home</a>
+          <a className="SearchResult-navLink" href="/">home</a>
         </div>
       </header>
 
@@ -329,6 +334,7 @@ const Search_results = () => {
                 <p>{ride.start_location} → {ride.end_location}</p>
                 <p>Time: {new Date(ride.ride_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                 <p>Seats: {ride.available_seats}</p>
+                <button className="btn reserve-ridebtn-from-searchResult1" onClick={handlereserve}>reserve</button>
               </div>
             ))
           )}

@@ -38,6 +38,10 @@
   font-weight: 600;
 }
 
+.active {
+  border-bottom: 1px solid orange;
+}
+
 .signin {
   background: transparent;
   border: 1px solid #ccc;
@@ -47,6 +51,10 @@
   background: #ff6b2b;
   color: white;
   border-radius: 4px;
+}
+
+.nav-right {
+  
 }
 
 /* Hero Section */

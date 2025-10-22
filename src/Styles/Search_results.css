@@ -23,6 +23,12 @@
   margin-bottom: 2rem;
 }
 
+
+.SearchResult-navLink {
+  text-decoration: none;
+  
+}
+
 /* ===== Search Bar Section ===== */
 .transportation-search-bar {
   width: 100%;
@@ -126,6 +132,16 @@
 .transportation-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reserve-ridebtn-from-searchResult1 {
+  border-radius: 50px;
+  background-color: orange;
+  color: white;
+}
+
+.reserve-ridebtn-from-searchResult1:hover {
+  transform: scale(30px);
 }
 
 /* ===== Responsive ===== */

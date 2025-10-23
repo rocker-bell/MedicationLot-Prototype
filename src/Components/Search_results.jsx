@@ -262,7 +262,7 @@ const Search_results = () => {
     <div className="transportation-page">
       <header className="transportation-header">
         <div className="header-bar">
-          <a className="SearchResult-navLink" href="/">home</a>
+          <a className="SearchResult-navLink" href="#">home</a>
         </div>
       </header>
 

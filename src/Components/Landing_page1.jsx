@@ -113,15 +113,15 @@ const Landing_page1 = () => {
                             <div className="LPMS_section1_box1_advantages">
                                     <span className="LPMS_section1_box1_advantages_item1">
                                             <img  src={rideshare} alt="item_image"  className="LPMS_section1_box1_items_image" />
-                                            <p classname="LPMS_section1_box1_items_title">Shared Rides</p>
+                                            <p className="LPMS_section1_box1_items_title">Shared Rides</p>
                                     </span>
                                     <span className="LPMS_section1_box1_advantages_item2">
                                                         <img  src={maplocation} alt="item_image"  className="LPMS_section1_box1_items_image" />
-                                            <p classname="LPMS_section1_box1_items_title">Campus Routes</p>
+                                            <p className="LPMS_section1_box1_items_title">Campus Routes</p>
                                     </span>
                                     <span className="LPMS_section1_box1_advantages_item3">
                                         <img  src={schedule} alt="item_image"  className="LPMS_section1_box1_items_image" />
-                                            <p classname="LPMS_section1_box1_items_title">Flexible Scheduling</p>
+                                            <p className="LPMS_section1_box1_items_title">Flexible Scheduling</p>
 
                                     </span>
                             </div>

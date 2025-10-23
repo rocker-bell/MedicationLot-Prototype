@@ -1135,6 +1135,12 @@ export default function Dashboard() {
               </div>
             </form>
 
+
+            <div className="credit-rides-info">
+              <div className="credit">450 mad</div>
+              <div className="ride-info">250 rides</div>
+            </div>
+
             {/* Add your stats or other info here if needed */}
           </section>
         )}

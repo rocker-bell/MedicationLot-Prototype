@@ -13,16 +13,16 @@ const PackagesPage = () => {
             <Logo/>
           </div>
           <ul className="nav-links">
-            <Link to="/">home</Link>
+            <Link to="/" className="nav-links-lists">home</Link>
             <li>How It Works</li>
             {/* <li>Pricing</li> */}
-            <li className="active">Packages</li>
-            <Link to="/About">
+            <li className="active nav-links-lists">Packages</li>
+            <Link to="/About" className="nav-links-lists">
                 About
             </Link>
           </ul>
           <div className="nav-actions">
-            <Link to="/User_interface">
+            <Link to="/User_interface" className="nav-links-lists">
                 Sign in
             </Link>
             <button className="btn btn-primary">Get Started</button>

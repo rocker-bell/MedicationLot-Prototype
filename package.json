@@ -1,5 +1,5 @@
 {
-  "homepage": "https://kiznoboko.github.io/transportation-app",
+  "homepage": "https://kiznoboko.github.io/MedSupplyChain-Hackathone-usecase",
   "name": "trajectory-web-app",
   "private": true,
   "version": "0.0.0",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.76.0",
+    "ethers": "^6.15.0",
     "react": "^18.2.0",
     "react-datepicker": "^8.8.0",
     "react-dom": "^18.2.0",

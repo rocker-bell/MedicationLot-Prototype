@@ -404,7 +404,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, useNavigate } from "react-router-dom"; 
-import { ethers, Contract, BrowserProvider } from 'ethers';
+import { ethers, Contract, BrowserProvider, formatUnits, parseUnits } from 'ethers';
 
 // Import Components and ABIs...
 import Demo from "./Components/Demo.jsx";

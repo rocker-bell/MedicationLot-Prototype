@@ -527,10 +527,12 @@ const App = () => {
                         <Demo 
                             userData={userData}
                             setUserData={setUserData}
+                            setSigner={setSigner}
                             signer={signer}
                             message={message}
                             setMessage={setMessage}
                             contract={contract} // Pass LotTrackr contract
+                            setContract={setContract}
                             creditTokenContract={creditTokenContract} 
                             connectAndSetup={connectAndSetup} // Pass the connection function
                         />
@@ -553,6 +555,7 @@ const App = () => {
                         } 
                     />
                 </Route>
+                
             </Routes>
         </>
     );

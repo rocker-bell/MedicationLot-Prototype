@@ -11,6 +11,10 @@ const Demander_devis = () => {
   // Navigate to the landing page and pass the section info in the state
   navigate('/', { state: { scrollTo: section } });
 };
+
+
+                
+
     return (
         <>
             <div className="Demander_deviswrapper">

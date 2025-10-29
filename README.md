@@ -6,7 +6,7 @@ Le projet **PharmaExpert** vise à assurer une **traçabilité totale et infalsi
 
 ---
 
- ⚙️ **Fonctionnement**
+ **Fonctionnement**
 
 1. **Attribution d’un identifiant unique**
    Chaque lot de médicament reçoit un **identifiant unique** qui est enregistré de manière permanente sur le réseau **Hedera Hashgraph**, garantissant ainsi son authenticité et sa traçabilité.
@@ -27,13 +27,13 @@ Pour plus de détails, veuillez consulter le fichier de **Documentation et ces d
 
 ---
 
- 🧩 **Configuration du projet**
+ **Configuration du projet**
 
 Ce modèle fournit une **configuration de base** pour démarrer le développement du projet. Il inclut toutes les dépendances et les configurations nécessaires pour mettre en place l'environnement de travail.
 
 ---
 
- ⚙️ **Installation et exécution**
+ **Installation et exécution**
 
 1. **Cloner le dépôt**
 
@@ -60,11 +60,10 @@ Ce projet est open-source et distribué sous **licence MIT**.
 
 ---
 
-🚀 **À venir**
+**À venir**
 
-* Interface utilisateur pour le suivi des lots.
-* Intégration complète avec les API Hedera.
-* Tableau de bord d’analyse IA en temps réel.
+* plus d'integration d'utilisation du contract
+* more specifications du produit et utilisation du fonctionnement
 
 ---
 

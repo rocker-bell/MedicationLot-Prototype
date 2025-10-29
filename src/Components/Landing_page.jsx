@@ -596,10 +596,11 @@ const Landing_page = () => {
             <p>Expert en traçabilité pharmaceutique et lutte contre la contrefaçon.</p>
           </div>
           <div className="footer-links">
-            <a href="#mission">Mission</a>
-            <a href="#services">Services</a>
-            <a href="#process">Processus</a>
-            <a href="#contact">Contact</a>
+             <a href="#mission" onClick={(e) => handleScrollToSection(e, "mission")}>Mission</a>
+            <a href="#services" onClick={(e) => handleScrollToSection(e, "services")}>Services</a>
+            <a href="#process" onClick={(e) => handleScrollToSection(e, "process")}>Processus</a>
+            <a href="#results" onClick={(e) => handleScrollToSection(e, "results")}>Résultats</a>
+            <a href="#contact" onClick={(e) => handleScrollToSection(e, "contact")}>Contact</a>
           </div>
           <div>
             <small>© 2025  PharmaExpert. Tous droits réservés.</small>

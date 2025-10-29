@@ -23,7 +23,7 @@ Le projet **PharmaExpert** vise à assurer une **traçabilité totale et infalsi
 
 ---
 
-Pour plus de détails, veuillez consulter le fichier de **documentation**.
+Pour plus de détails, veuillez consulter le fichier de **Documentation et ces document**(requis).
 
 ---
 

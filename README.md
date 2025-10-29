@@ -63,8 +63,10 @@ Ce projet est open-source et distribué sous **licence MIT**.
 **À venir**
 
 * plus d'integration d'utilisation du contract
-* more specifications du produit et utilisation du fonctionnement
-
+* plus de  specifications du produit et utilisation du fonctionnement
+* plus de controle sur le fonctionnement du contract pour admin (owner) et utilisateure normale
+* plus de design (design simplifie et subtle pour l'utilisation)
+* resoudre l'erreur du non redirection a la page de success apres form handling on landing page
 ---
 
 

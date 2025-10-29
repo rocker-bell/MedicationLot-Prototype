@@ -240,7 +240,7 @@
 // export default Landing_page;
 
 
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../Styles/Landing_page.css"; // Import the CSS for styling
 import HederaLogo from "../Assets/hedera-logo.png"; // Import the logo image
@@ -248,6 +248,57 @@ import HederaLogo from "../Assets/hedera-logo.png"; // Import the logo image
 const Landing_page = () => {
   const location = useLocation(); // Import and use location to get state
   const navigate = useNavigate();
+
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Handle form input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      // Simulating the form submission to Pageclip API
+      const response = await fetch("https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form", {
+        method: "POST",
+        body: new URLSearchParams(formData),
+      });
+
+      if (response.ok) {
+        // Redirect to success page on successful submission
+        navigate("/Success", { state: { message: 'Form submitted successfully!' } });
+      } else {
+        // If the response isn't ok, show an error message in the console
+        setErrorMessage("Error submitting form, please try again.");
+        console.error("Form submission failed.");
+      }
+    } catch (error) {
+      // Handle network or other errors
+      setErrorMessage("An error occurred. Please try again later.");
+      console.error("An error occurred during form submission:", error);
+    } finally {
+      setIsSubmitting(false); // Reset the submitting state
+    }
+  };
 
   useEffect(() => {
     if (location.state && location.state.scrollTo) {
@@ -448,7 +499,7 @@ const Landing_page = () => {
               </ul>
             </div>
 
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            {/* <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
               <div className="form-row">
                 <input placeholder="Prénom" />
                 <input placeholder="Nom" />
@@ -457,7 +508,82 @@ const Landing_page = () => {
               <input placeholder="Entreprise" />
               <textarea placeholder="Message"></textarea>
               <button className="btn primary">Envoyer le message</button>
-            </form>
+            </form> */}
+            {/* <form class="pageclip-form" method="post" action="https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form" id="contact-form">
+  <div class="form-row">
+    <input class="input-field" id="first-name" name="first-name" placeholder="Prénom" required />
+    <input class="input-field" id="last-name" name="last-name" placeholder="Nom" required />
+  </div>
+
+  <input class="input-field" id="email" name="email" type="email" placeholder="Email" required />
+  <input class="input-field" id="company" name="company" placeholder="Entreprise" required />
+
+  <textarea class="textarea-field" id="message" name="message" placeholder="Message" required></textarea>
+
+  <button class="btn primary" type="submit">Envoyer le message</button>
+</form> */}
+
+
+                <form className="pageclip-form" onSubmit={handleSubmit} id="contact-form">
+                <div className="form-row">
+                  <input
+                    className="input-field"
+                    id="first-name"
+                    name="firstName"
+                    placeholder="Prénom"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    className="input-field"
+                    id="last-name"
+                    name="lastName"
+                    placeholder="Nom"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <input
+                  className="input-field"
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  className="input-field"
+                  id="company"
+                  name="company"
+                  placeholder="Entreprise"
+                  value={formData.company}
+                  onChange={handleChange}
+                  required
+                />
+
+                <textarea
+                  className="textarea-field"
+                  id="message"
+                  name="message"
+                  placeholder="Message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+
+                <button className="btn primary-send" type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
+                </button>
+              </form>
+
+              {/* Error message */}
+              {errorMessage && <div className="error-message">{errorMessage}</div>}
+
           </div>
         </section>
       </main>

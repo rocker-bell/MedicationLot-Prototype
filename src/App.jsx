@@ -414,6 +414,7 @@ import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import LotTrackerABI from "./Components/LotTrackerABI.js";
 import CreditTokenABI from './Components/CreditTokenABI.js'; 
 import Demander_devis from './Components/demander_devis.jsx';
+import Success from './Components/Success.jsx';
 
 // Constants
 const LOTTRACKR_ADDRESS = "0xdB04e79caEa24AF20b4ad1AaAb0Ed2e67DCb9449"; 
@@ -517,6 +518,7 @@ const App = () => {
         <>
             <Routes>
                 {/* 1. Public Routes */}
+                <Route path="/Success" element={<Success/>}/>
                 <Route path="/" element={<Landing_page/>} />
                 <Route path="/demander_devis" element={
                     <Demander_devis

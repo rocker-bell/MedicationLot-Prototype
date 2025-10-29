@@ -317,7 +317,7 @@
 import "../Styles/demander_devis.css";
 import HederaLogo from "../Assets/hedera-logo.png";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ethers } from "ethers";
 
 const Demander_devis = ({
@@ -428,8 +428,8 @@ const Demander_devis = ({
         <div className="container nav">
           <div className="brand">
             <div className="logo">
-              <a href="/">
-              <img src={HederaLogo} alt="Hedera Logo" /></a>
+             <Link to="/">
+              <img src={HederaLogo} alt="Hedera Logo" /></Link>
             </div>
             <span>MedSupply Chain</span>
           </div>

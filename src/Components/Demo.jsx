@@ -3156,6 +3156,8 @@ const Demo = ({
     
     const navigate = useNavigate();
     const location = useLocation();
+    const fromPage = location.state?.from || "/Dashboard";
+
     const DECIMALS = 18;
     const initialRegisterActive = location.state?.registerActive || false;
     const [isLoginActive, setIsLoginActive] = useState(!initialRegisterActive);
@@ -3410,7 +3412,8 @@ const handleLogin = async (e) => {
         };
 
         setUserData(newUserData); // This updates App.jsx and triggers the redirect
-        navigate("/Dashboard", { replace: true }); // now this will actually run
+        // navigate("/Dashboard", { replace: true }); // now this will actually run
+        navigate(fromPage, { replace: true })
 
     } catch (err) {
         console.error("Login failed:", err);

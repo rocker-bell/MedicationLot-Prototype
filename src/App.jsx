@@ -518,7 +518,21 @@ const App = () => {
             <Routes>
                 {/* 1. Public Routes */}
                 <Route path="/" element={<Landing_page/>} />
-                <Route path="/demander_devis" element={<Demander_devis/>} />
+                <Route path="/demander_devis" element={
+                    <Demander_devis
+                
+                        userData={userData}
+                            setUserData={setUserData}
+                            setSigner={setSigner}
+                            signer={signer}
+                            message={message}
+                            setMessage={setMessage}
+                            contract={contract} // Pass LotTrackr contract
+                            setContract={setContract}
+                            
+                            creditTokenContract={creditTokenContract} 
+                            connectAndSetup={connectAndSetup} // Pass the connection function
+                />} />
 
                 {/* 2. Login/Register Route */}
                 <Route 
@@ -562,3 +576,173 @@ const App = () => {
 }
 
 export default App;
+
+
+
+// import React, { useState, useEffect, useCallback } from 'react';
+// import { Routes, Route, useNavigate } from "react-router-dom"; 
+// import { Contract, BrowserProvider } from 'ethers';
+
+// // Import Components and ABIs...
+// import Demo from "./Components/Demo.jsx";
+// import Dashboard from "./Components/dashboard.jsx";
+// import Landing_page from "./Components/Landing_page.jsx";
+// import ProtectedRoute from "./Components/ProtectedRoute.jsx"; 
+// import LotTrackerABI from "./Components/LotTrackerABI.js";
+// import CreditTokenABI from './Components/CreditTokenABI.js'; 
+// import Demander_devis from './Components/demander_devis.jsx';
+
+// // Constants
+// const LOTTRACKR_ADDRESS = "0xdB04e79caEa24AF20b4ad1AaAb0Ed2e67DCb9449"; 
+// const CREDIT_TOKEN_ADDRESS = "0x42a05014306386b823329f777eb09ec1f493d69c";
+// const HEDERA_TESTNET_CHAIN_ID = '0x128'; 
+
+// const App = () => {
+//     const navigate = useNavigate();
+    
+//     // --- State (including localStorage initialization) ---
+//     const [userData, setUserData] = useState(() => {
+//         const savedUserData = localStorage.getItem('userData');
+//         return savedUserData ? JSON.parse(savedUserData) : null;
+//     }); 
+    
+//     const [signer, setSigner] = useState(null); 
+//     const [message, setMessage] = useState("");
+//     const [lotTrackerContract, setLotTrackerContract] = useState(null); 
+//     const [creditTokenContract, setCreditTokenContract] = useState(null); 
+    
+//     const isLoggedIn = !!userData && !!userData.address;
+
+//     // --- Connection Logic ---
+//     const connectAndSetup = useCallback(async () => {
+//         if (typeof window.ethereum === 'undefined') {
+//             setMessage("MetaMask is not installed. Please install it.");
+//             return;
+//         }
+
+//         try {
+//             const provider = new BrowserProvider(window.ethereum);
+            
+//             // Check accounts
+//             const accounts = await provider.listAccounts();
+//             if (accounts.length === 0) {
+//                 await provider.send("eth_requestAccounts", []);
+//             }
+
+//             const network = await provider.getNetwork();
+//             if (network.chainId !== BigInt(HEDERA_TESTNET_CHAIN_ID)) {
+//                 setMessage("Please switch MetaMask to the Hedera Testnet.");
+//                 setSigner(null);
+//                 setLotTrackerContract(null);
+//                 setCreditTokenContract(null);
+//                 return;
+//             }
+
+//             const _signer = await provider.getSigner();
+//             const _lotTracker = new Contract(LOTTRACKR_ADDRESS, LotTrackerABI, _signer);
+//             const _creditToken = new Contract(CREDIT_TOKEN_ADDRESS, CreditTokenABI, _signer);
+            
+//             setSigner(_signer);
+//             setLotTrackerContract(_lotTracker);
+//             setCreditTokenContract(_creditToken);
+
+//             setMessage(`Wallet connected: ${_signer.address.substring(0, 6)}... on Hedera Testnet.`);
+//         } catch (error) {
+//             console.error("MetaMask connection failed:", error);
+//             setMessage(`Connection failed: ${error.message || "Unknown error"}`);
+//             setSigner(null);
+//             setLotTrackerContract(null);
+//             setCreditTokenContract(null);
+//         }
+//     }, []);
+
+//     // --- Auto-Connect & Events ---
+//     useEffect(() => {
+//         if (isLoggedIn && !signer) {
+//             console.log("App.js: Restoring session — auto-connecting wallet...");
+//             connectAndSetup();
+//         }
+
+//         window.ethereum?.on('accountsChanged', connectAndSetup);
+//         window.ethereum?.on('chainChanged', connectAndSetup);
+
+//         return () => {
+//             window.ethereum?.removeListener('accountsChanged', connectAndSetup);
+//             window.ethereum?.removeListener('chainChanged', connectAndSetup);
+//         };
+//     }, [isLoggedIn, signer, connectAndSetup]);
+
+//     // --- Sync localStorage ---
+//     useEffect(() => {
+//         if (userData && userData.address) {
+//             localStorage.setItem('userData', JSON.stringify(userData));
+//         } else {
+//             localStorage.removeItem('userData');
+//             setSigner(null);
+//             setLotTrackerContract(null);
+//             setCreditTokenContract(null);
+//         }
+//     }, [userData]);
+
+//     // --- Routes ---
+//     return (
+//         <Routes>
+//             {/* Public Routes */}
+//             <Route path="/" element={<Landing_page />} />
+            
+//             <Route 
+//                 path="/demander_devis" 
+//                 element={
+//                     <Demander_devis
+//                         userData={userData}
+//                         setUserData={setUserData}
+//                         signer={signer}
+//                         setSigner={setSigner}
+//                         message={message}
+//                         setMessage={setMessage}
+//                         lotTrackerContract={lotTrackerContract}
+//                         creditTokenContract={creditTokenContract}
+//                         connectAndSetup={connectAndSetup}
+//                     />
+//                 } 
+//             />
+
+//             {/* Auth Route */}
+//             <Route 
+//                 path="/Demo" 
+//                 element={
+//                     <Demo 
+//                         userData={userData}
+//                         setUserData={setUserData}
+//                         signer={signer}
+//                         setSigner={setSigner}
+//                         message={message}
+//                         setMessage={setMessage}
+//                         connectAndSetup={connectAndSetup}
+//                     />
+//                 } 
+//             />
+
+//             {/* Protected Dashboard */}
+//             <Route 
+//                 element={<ProtectedRoute isLoggedIn={isLoggedIn} redirectPath="/Demo" />}
+//             >
+//                 <Route 
+//                     path="/Dashboard" 
+//                     element={
+//                         <Dashboard 
+//                             userData={userData} 
+//                             setUserData={setUserData} 
+//                             setMessage={setMessage} 
+//                             signer={signer} 
+//                             lotTrackerContract={lotTrackerContract} 
+//                             creditTokenContract={creditTokenContract} 
+//                         />
+//                     } 
+//                 />
+//             </Route>
+//         </Routes>
+//     );
+// };
+
+// export default App;

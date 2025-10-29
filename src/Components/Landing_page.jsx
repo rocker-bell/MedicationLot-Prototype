@@ -45,7 +45,7 @@
 //             <div className="logo">
 //               <img src={HederaLogo} alt="Hedera Logo" />
 //             </div>
-//             <span>MedSupply Chain</span>
+//             <span>PharmaExpert</span>
 //           </div>
 //           <nav className="nav-links">
 //             <a href="#mission" onClick={(e) => handleScrollToSection(e, "mission")}>Mission</a>
@@ -219,7 +219,7 @@
 //       <footer className="site-footer">
 //         <div className="container footer-grid">
 //           <div>
-//             <strong> MedSupply Chain</strong>
+//             <strong> PharmaExpert</strong>
 //             <p>Expert en traçabilité pharmaceutique et lutte contre la contrefaçon.</p>
 //           </div>
 //           <div className="footer-links">
@@ -229,7 +229,7 @@
 //             <a href="#contact">Contact</a>
 //           </div>
 //           <div>
-//             <small>© 2025  MedSupply Chain. Tous droits réservés.</small>
+//             <small>© 2025  PharmaExpert. Tous droits réservés.</small>
 //           </div>
 //         </div>
 //       </footer>
@@ -291,7 +291,7 @@ const Landing_page = () => {
             <div className="logo">
               <img src={HederaLogo} alt="Hedera Logo" />
             </div>
-            <span>MedSupply Chain</span>
+            <span>PharmaExpert</span>
           </div>
           <nav className="nav-links">
             <a href="#mission" onClick={(e) => handleScrollToSection(e, "mission")}>Mission</a>
@@ -428,8 +428,8 @@ const Landing_page = () => {
           <h3>Résultats Concrets</h3>
           <div className="metrics">
             <div className="metric"><strong>95%</strong><span>Réduction contrefaçon</span></div>
-            <div className="metric"><strong>10+</strong><span>Ans d'expérience</span></div>
-            <div className="metric"><strong>50+</strong><span>Pays couverts</span></div>
+            <div className="metric"><strong>1+</strong><span>Ans d'expérience</span></div>
+            <div className="metric"><strong>1+</strong><span>Pays couverts</span></div>
             <div className="metric"><strong>&lt;1s</strong><span>temps de vérification</span></div>
           </div>
         </section>
@@ -442,9 +442,9 @@ const Landing_page = () => {
               <p>Vous souhaitez mettre en place une solution de traçabilité pharmaceutique ? Contactez-nous pour discuter de votre projet.</p>
 
               <ul className="contact-info">
-                <li><strong>Email:</strong> expert@medtracex.fr</li>
-                <li><strong>Téléphone:</strong> +33 1 23 45 67 89</li>
-                <li><strong>Localisation:</strong> Paris, France</li>
+                <li><strong>Email:</strong> testdevusecase@proton.me</li>
+                
+                <li><strong>Localisation:</strong> Morocco</li>
               </ul>
             </div>
 
@@ -466,7 +466,7 @@ const Landing_page = () => {
       <footer className="site-footer">
         <div className="container footer-grid">
           <div>
-            <strong> MedSupply Chain</strong>
+            <strong> PharmaExpert</strong>
             <p>Expert en traçabilité pharmaceutique et lutte contre la contrefaçon.</p>
           </div>
           <div className="footer-links">
@@ -476,7 +476,7 @@ const Landing_page = () => {
             <a href="#contact">Contact</a>
           </div>
           <div>
-            <small>© 2025  MedSupply Chain. Tous droits réservés.</small>
+            <small>© 2025  PharmaExpert. Tous droits réservés.</small>
           </div>
         </div>
       </footer>

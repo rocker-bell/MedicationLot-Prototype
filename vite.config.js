@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/MedSupplyChain-Hackathone-usecase/'  // <<< required for GitHub Pages
+  base: '/MedicationLot-Prototype/'  // <<< required for GitHub Pages
 })

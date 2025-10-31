@@ -1,5 +1,5 @@
 const Success = () => {
-    retrun (
+    return (
         <>
                     <h1>Success</h1>
         </>

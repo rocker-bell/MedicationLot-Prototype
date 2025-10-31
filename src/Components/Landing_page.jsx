@@ -29,6 +29,18 @@ const Landing_page = () => {
     });
   };
 
+  const handleValidation = (e) => {
+  const form = e.target;
+  if (!form.checkValidity()) {
+    e.preventDefault();
+    alert("Veuillez remplir tous les champs obligatoires.");
+  }
+  else {
+    navigate("/Success")
+  }
+};
+
+
   // Handle form submission
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -60,40 +72,40 @@ const Landing_page = () => {
   //   }
   // };
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
+//   const handleSubmit = async (e) => {
+//   e.preventDefault();
 
-  setIsSubmitting(true);
-  setErrorMessage('');
+//   setIsSubmitting(true);
+//   setErrorMessage('');
 
-  try {
-    const response = await fetch(
-      "https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(formData),
-      }
-    );
+//   try {
+//     const response = await fetch(
+//       "https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/x-www-form-urlencoded",
+//         },
+//         body: new URLSearchParams(formData),
+//       }
+//     );
 
-    // ⚠️ Pageclip often returns a redirect (302), not 200, which still means success.
-    if (response.ok || response.status === 302) {
-      navigate("/Success", { state: { message: 'Form submitted successfully!' } });
-    } else {
-      // Try to log response for debugging
-      const text = await response.text();
-      console.error("Unexpected response:", text);
-      setErrorMessage("Error submitting form, please try again.");
-    }
-  } catch (error) {
-    console.error("An error occurred during form submission:", error);
-    setErrorMessage("An error occurred. Please try again later.");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+//     // ⚠️ Pageclip often returns a redirect (302), not 200, which still means success.
+//     if (response.ok || response.status === 302) {
+//       navigate("/Success", { state: { message: 'Form submitted successfully!' } });
+//     } else {
+//       // Try to log response for debugging
+//       const text = await response.text();
+//       console.error("Unexpected response:", text);
+//       setErrorMessage("Error submitting form, please try again.");
+//     }
+//   } catch (error) {
+//     console.error("An error occurred during form submission:", error);
+//     setErrorMessage("An error occurred. Please try again later.");
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };
 
 
   useEffect(() => {
@@ -320,7 +332,13 @@ const Landing_page = () => {
 </form> */}
 
 
-                <form className="pageclip-form" onSubmit={handleSubmit} id="contact-form">
+                <form
+  className="pageclip-form"
+  method="post"
+  onSubmit={handleValidation}
+  action="https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form"
+  id="contact-form"
+>
                 <div className="form-row">
                   <input
                     className="input-field"
@@ -378,7 +396,7 @@ const Landing_page = () => {
               </form>
 
               {/* Error message */}
-              {errorMessage && <div className="error-message">{errorMessage}</div>}
+              {/* {errorMessage && <div className="error-message">{errorMessage}</div>} */}
 
           </div>
         </section>

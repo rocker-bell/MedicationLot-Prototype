@@ -44,7 +44,7 @@ Ce modèle fournit une **configuration de base** pour démarrer le développemen
    npm run dev
    ```
 
-**NB :** Assurez-vous que **Node.js** est installé sur votre machine.
+**NB :** Assurez-vous que **Node.js** & **Metamask(Extension)** est installé sur votre machine.
 
 ---
 

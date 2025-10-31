@@ -29,16 +29,33 @@ const Landing_page = () => {
     });
   };
 
-  const handleValidation = (e) => {
+//   const handleValidation = (e) => {
+//   const form = e.target;
+
+//   // Prevent submission if required fields are missing
+//   if (!form.checkValidity()) {
+//     e.preventDefault();
+//     setErrorMessage("Veuillez remplir tous les champs obligatoires.");
+//   } else {
+//     setErrorMessage(""); // clear old error if validation passes
+//   }
+// };
+
+const handleValidation = (e) => {
   const form = e.target;
+
+  // Prevent submission if required fields are missing
   if (!form.checkValidity()) {
     e.preventDefault();
-    alert("Veuillez remplir tous les champs obligatoires.");
-  }
-  else {
-    navigate("/Success")
+    setErrorMessage("Veuillez remplir tous les champs obligatoires.");
+  } else {
+    setErrorMessage(""); // Clear old error if validation passes
+    alert("Votre message a bien été envoyé. Merci de nous avoir contactés !");
+    navigate("/")
   }
 };
+
+
 
 
   // Handle form submission
@@ -332,7 +349,7 @@ const Landing_page = () => {
 </form> */}
 
 
-                <form
+                {/* <form
   className="pageclip-form"
   method="post"
   onSubmit={handleValidation}
@@ -393,7 +410,87 @@ const Landing_page = () => {
                 <button className="btn primary-send" type="submit" disabled={isSubmitting}>
                   {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
                 </button>
-              </form>
+              </form> */}
+
+
+              <form
+  className="pageclip-form"
+  method="post"
+  onSubmit={handleValidation}
+  action="https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form"
+  id="contact-form"
+>
+  {/* Redirect to your Success page after submission */}
+  <input
+    type="hidden"
+    name="redirect"
+    value="https://rocker-bell.github.io/Success"
+  />
+
+  <div className="form-row">
+    <input
+      className="input-field"
+      id="first-name"
+      name="firstName"
+      placeholder="Prénom"
+      value={formData.firstName}
+      onChange={handleChange}
+      required
+    />
+    <input
+      className="input-field"
+      id="last-name"
+      name="lastName"
+      placeholder="Nom"
+      value={formData.lastName}
+      onChange={handleChange}
+      required
+    />
+  </div>
+
+  <input
+    className="input-field"
+    id="email"
+    name="email"
+    type="email"
+    placeholder="Email"
+    value={formData.email}
+    onChange={handleChange}
+    required
+  />
+
+  <input
+    className="input-field"
+    id="company"
+    name="company"
+    placeholder="Entreprise"
+    value={formData.company}
+    onChange={handleChange}
+    required
+  />
+
+  <textarea
+    className="textarea-field"
+    id="message"
+    name="message"
+    placeholder="Message"
+    value={formData.message}
+    onChange={handleChange}
+    required
+  />
+
+  <button
+    className="btn primary-send"
+    type="submit"
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
+  </button>
+
+  {/* Optional: show validation or error messages */}
+  {errorMessage && <div className="error-message">{errorMessage}</div>}
+</form>
+
 
               {/* Error message */}
               {/* {errorMessage && <div className="error-message">{errorMessage}</div>} */}

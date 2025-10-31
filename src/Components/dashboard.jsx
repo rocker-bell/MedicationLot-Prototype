@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import toggleSideBar from "./images/toggle-sidebar.png";
 import { useNavigate } from 'react-router-dom';
 // 🟢 Import all necessary ethers v6 components
 import { ethers, Contract, BrowserProvider, formatUnits, parseUnits } from 'ethers'; 
@@ -577,7 +578,10 @@ const handleAddProductSubmit = async (e) => {
             <div className={`sidebar ${isSidebarOpen ? '' : 'closed'}`}>
                 <div className="sidebar-header">
                     <span className="sidebar-title">Dashboard</span>
-                    <button onClick={toggleSidebar} className="close-btn">&times;</button>
+                     <button onClick={toggleSidebar} className="close-btn">
+            {isSidebarOpen ? (<p className='closetoggle-sideBar'>x</p>
+            ) : (<img src={toggleSideBar} alt="Open" className='toggle-sideBar' />)}
+        </button>
                 </div>
                 <ul className="sidebar-links">
                     <li><a href="#" className={`sidebar-link ${activeSection === 'dashboard' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveSection('dashboard'); }}>Dashboard</a></li>
@@ -594,7 +598,14 @@ const handleAddProductSubmit = async (e) => {
                     </div>
                     <div className="header-right">
                         <button className="header-btn">Notifications</button>
-                        <button className="header-btn">Profile</button>
+                        {/* <button className="header-btn">Profile</button> */}
+                        <button 
+                    className="header-btn" 
+                    onClick={() => setActiveSection('dashboard')} // Link Profile button to Dashboard section
+                >
+                    Profile
+                </button>
+                        
                     </div>
                 </header>
 

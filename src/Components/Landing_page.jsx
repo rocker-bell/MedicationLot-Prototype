@@ -30,35 +30,71 @@ const Landing_page = () => {
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
     
-    setIsSubmitting(true);
-    setErrorMessage('');
+  //   setIsSubmitting(true);
+  //   setErrorMessage('');
 
-    try {
-      // Simulating the form submission to Pageclip API
-      const response = await fetch("https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form", {
+  //   try {
+  //     // Simulating the form submission to Pageclip API
+  //     const response = await fetch("https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form", {
+  //       method: "POST",
+  //       body: new URLSearchParams(formData),
+  //     });
+
+  //     if (response.ok) {
+  //       // Redirect to success page on successful submission
+  //       navigate("/Success", { state: { message: 'Form submitted successfully!' } });
+  //     } else {
+  //       // If the response isn't ok, show an error message in the console
+  //       setErrorMessage("Error submitting form, please try again.");
+  //       console.error("Form submission failed.");
+  //     }
+  //   } catch (error) {
+  //     // Handle network or other errors
+  //     setErrorMessage("An error occurred. Please try again later.");
+  //     console.error("An error occurred during form submission:", error);
+  //   } finally {
+  //     setIsSubmitting(false); // Reset the submitting state
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  setIsSubmitting(true);
+  setErrorMessage('');
+
+  try {
+    const response = await fetch(
+      "https://send.pageclip.co/gq1KGSDfH49nSI7nHWxygcpDTa0DnsWI/contact-form",
+      {
         method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
         body: new URLSearchParams(formData),
-      });
-
-      if (response.ok) {
-        // Redirect to success page on successful submission
-        navigate("/Success", { state: { message: 'Form submitted successfully!' } });
-      } else {
-        // If the response isn't ok, show an error message in the console
-        setErrorMessage("Error submitting form, please try again.");
-        console.error("Form submission failed.");
       }
-    } catch (error) {
-      // Handle network or other errors
-      setErrorMessage("An error occurred. Please try again later.");
-      console.error("An error occurred during form submission:", error);
-    } finally {
-      setIsSubmitting(false); // Reset the submitting state
+    );
+
+    // ⚠️ Pageclip often returns a redirect (302), not 200, which still means success.
+    if (response.ok || response.status === 302) {
+      navigate("/Success", { state: { message: 'Form submitted successfully!' } });
+    } else {
+      // Try to log response for debugging
+      const text = await response.text();
+      console.error("Unexpected response:", text);
+      setErrorMessage("Error submitting form, please try again.");
     }
-  };
+  } catch (error) {
+    console.error("An error occurred during form submission:", error);
+    setErrorMessage("An error occurred. Please try again later.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   useEffect(() => {
     if (location.state && location.state.scrollTo) {

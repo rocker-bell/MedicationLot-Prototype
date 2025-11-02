@@ -62,12 +62,13 @@ Ce projet est open-source et distribué sous **licence MIT**.
 
 **À venir**
 
-* plus d'integration d'utilisation du contract
-* plus de  specifications du produit et utilisation du fonctionnement
-* plus de controle sur le fonctionnement du contract pour admin (owner) et utilisateure normale
-* plus de design (design simplifie et subtle pour l'utilisation)
-* resoudre l'erreur du non redirection a la page de success apres form handling on landing page
-* implementation finale 
+* plus d'integration d'utilisation du contract.
+* plus de  specifications du produit et utilisation du fonctionnement.
+* plus de controle sur le fonctionnement du contract pour admin (owner) et utilisateure normale.
+* plus de design (design simplifie et subtle pour l'utilisation).
+* resoudre l'erreur du non redirection a la page de success apres form handling on landing page.
+* implementation finale.
+* Passer complètement aux contrats HTS plutôt qu’aux contrats Hedera basés sur ERC20 enveloppés et IERC20.
 ---
 
 

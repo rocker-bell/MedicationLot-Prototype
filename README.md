@@ -38,8 +38,8 @@ Ce modèle fournit une **configuration de base** pour démarrer le développemen
 1. **Cloner le dépôt**
 
    ```bash
-   git clone https://github.com/rocker-bell/blockchaine-use-prototype.git
-   cd blockchaine-use-prototype
+   git clone https://github.com/rocker-bell/MedicationLot-Prototype.git
+   cd MedicationLot-Prototype
    npm install
    npm run dev
    ```

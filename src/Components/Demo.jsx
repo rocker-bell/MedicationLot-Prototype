@@ -582,7 +582,7 @@ const Demo = ({
         
         // 🟢 FIX: Hash the password
         const hashedPassword = sha256.hex(loginPassword);
-        console.log("Client-side hash being sent:", hashedPassword); 
+        console.log("Client-side hash being sent:", loginPassword); 
 
         try {
             const userEVMAddress = await signer.getAddress(); 
@@ -598,7 +598,7 @@ const Demo = ({
             setMessage("Sending login transaction for credential check... (Confirm in MetaMask)");
 
             // 🟢 Send the HASH
-            const txResponse = await contract.login(loginEmail, hashedPassword);
+            const txResponse = await contract.login(loginEmail, loginPassword);
             const txReceipt = await txResponse.wait(); 
 
             if (txReceipt.status !== 1) {

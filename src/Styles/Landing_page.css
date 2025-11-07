@@ -238,6 +238,10 @@ body {
   background-color: rgba(30, 58, 138, 0.05);
 }
 
+/* .primary-send {
+  background-color:  green;
+} */
+
 .features {
   list-style: none;
   display: flex;
@@ -619,7 +623,7 @@ body {
   min-width: 120px;
 }
 
-.contact-form {
+#contact-form {
   background-color: var(--card-bg);
   padding: 2.5rem;
   border-radius: var(--radius-lg);
@@ -634,8 +638,8 @@ body {
   margin-bottom: 1rem;
 }
 
-.contact-form input,
-.contact-form textarea {
+#contact-form input,
+#contact-form textarea {
   width: 100%;
   padding: 0.85rem 1rem;
   border: 1px solid var(--border-color);
@@ -646,22 +650,23 @@ body {
   background-color: var(--bg-color);
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
+#contact-form input:focus,
+#contact-form textarea:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
 }
 
-.contact-form textarea {
+#contact-form textarea {
   min-height: 140px;
   resize: vertical;
   margin-bottom: 1rem;
 }
 
-.contact-form .btn {
+#contact-form .btn {
   width: 100%;
   justify-content: center;
+  background-color: #1e3a8a;
 }
 
 /* ===== FOOTER ===== */

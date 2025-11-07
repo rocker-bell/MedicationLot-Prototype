@@ -44,8 +44,12 @@ Ce modèle fournit une **configuration de base** pour démarrer le développemen
    npm run dev
    ```
 
-**NB :** Assurez-vous que **Node.js** & **Metamask(Extension)** est installé sur votre machine.
+**NB :** Assurez-vous que **Node.js** & **Metamask(Extension)** & **Hedera Testnet network est present dans metamask** est installé sur votre machine.
 
+```
+Voir cette page pour plus d'informations sur le testnet du réseau Hedera : https://docs.hedera.com/hedera/core-concepts/smart-contracts/json-rpc-relay
+
+```
 ---
 
 👥 **Contributeurs**

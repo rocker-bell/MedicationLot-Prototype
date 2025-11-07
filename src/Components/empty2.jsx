@@ -8,7 +8,7 @@
 // import "../Styles/Demo.css";
 
 // // Your contract's EVM address
-// const contractAddress = "0xdbc22b309b0c46e43c08d39c7f8acf119e091651";  
+// const contractAddress = "";  
 
 // // Hedera Testnet Chain ID (0x128 in hex)
 // const HEDERA_TESTNET_CHAIN_ID = '0x128'; 
@@ -127,113 +127,7 @@
 //         }
 //     };
 
-//     // --- 3. Login ---
-//     // const handleLogin = async (e) => {
-//     //     e.preventDefault();
-//     //     setMessage("");
-
-//     //     if (!contract || !signer) {
-//     //         setMessage("Wallet not connected or contract not initialized.");
-//     //         return;
-//     //     }
-        
-//     //     if (!loginPassword || !loginEmail) {
-//     //         setMessage("Please enter both email and password.");
-//     //         return;
-//     //     }
-
-//     //     try {
-//     //         const userEVMAddress = await signer.getAddress(); 
-            
-//     //         setMessage("Checking account status...");
-
-//     //         // ⚡ Use dynamic call to avoid ethers.js proxy issues
-//     //         const isBanned = await contract["getBannedStatus"](userEVMAddress);
-//     //         if (isBanned) {
-//     //             setMessage("🔴 Login failed. Your account has been banned from interaction.");
-//     //             return; 
-//     //         }
-            
-//     //         setMessage("Sending login transaction for credential check... (Confirm in MetaMask)");
-
-//     //         const txResponse = await contract.login(loginEmail, loginPassword); 
-//     //         const txReceipt = await txResponse.wait(); 
-
-//     //         if (txReceipt.status !== 1) {
-//     //             throw new Error("Login transaction failed on chain.");
-//     //         }
-            
-//     //         setMessage("Login successful! Fetching user data...");
-
-//     //         const [email, username, creationTime] = await contract.getUserInfoByAddress(userEVMAddress);
-            
-//     //         const creditsBigInt = await contract.checkUserCredit(userEVMAddress);
-//     //         const credit = formatUnits(creditsBigInt, DECIMALS); 
-            
-//     //         const newUserData = {
-//     //             address: userEVMAddress,
-//     //             email: email, 
-//     //             username: username,
-//     //             credits: credit,
-//     //             creationTime: creationTime.toString()
-//     //         };
-
-//     //         setMessage(`Login successful! Welcome back, ${username}.`);
-//     //         setUserData(newUserData);
-//     //         navigate("/Dashboard", { replace: true });
-            
-//     //     } catch (err) {
-//     //         console.error("Login failed:", err);
-            
-//     //         const revertReason = err.reason || (err.data && err.data.message) || err.message;
-            
-//     //         if (revertReason.includes("Account is banned")) {
-//     //              setMessage("🔴 Login failed. Your account is banned from interaction.");
-//     //         } else if (revertReason.includes("User not registered")) {
-//     //             setMessage("Login failed. The connected wallet is not registered.");
-//     //         } else if (revertReason.includes("Invalid email or password")) {
-//     //             setMessage("Login failed. Invalid email or password.");
-//     //         } else {
-//     //             setMessage(`Login failed. Check your wallet status. Error: ${revertReason}`);
-//     //         }
-//     //     }
-//     // };
-
-// //     const handleLogin = async (e) => {
-// //     e.preventDefault();
-// //     setMessage("");
-
-// //     if (!signer) {
-// //         setMessage("Wallet not connected yet.");
-// //         return;
-// //     }
-
-// //     const userEVMAddress = await signer.getAddress();
-
-// //     // Use a read-only contract to avoid TypeError
-// //     const provider = new BrowserProvider(window.ethereum);
-// //     const contractReadOnly = new Contract(contractAddress, contractABI, provider);
-
-// //     try {
-// //         const isBanned = await contractReadOnly.getBannedStatus(userEVMAddress);
-// //         if (isBanned) {
-// //             setMessage("🔴 Login failed. Your account has been banned.");
-// //             return;
-// //         }
-
-// //         // proceed with login transaction using signer
-// //         const contractTx = new Contract(contractAddress, contractABI, signer);
-// //         const txResponse = await contractTx.login(loginEmail, loginPassword);
-// //         await txResponse.wait();
-
-// //         setMessage("Login successful!");
-// //          setUserData(newUserData);
-// //         navigate("/Dashboard", { replace: true });
-// //     } catch (err) {
-// //         console.error("Login failed:", err);
-// //         setMessage(`Login failed: ${err.message}`);
-// //     }
-// // };
+    
 
 // const handleLogin = async (e) => {
 //     e.preventDefault();

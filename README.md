@@ -50,6 +50,8 @@ Ce modèle fournit une **configuration de base** pour démarrer le développemen
 Voir cette page pour plus d'informations sur le testnet du réseau Hedera : https://docs.hedera.com/hedera/core-concepts/smart-contracts/json-rpc-relay
 
 ```
+
+FIXÉ : prompt d'ajout du testnet du réseau Hedera s'il n'est pas présent, avec une sécurité renforcée pour les informations privées.
 ---
 
 👥 **Contributeurs**
@@ -66,14 +68,21 @@ Ce projet est open-source et distribué sous **licence MIT**.
 
 **À venir**
 
-* plus d'integration d'utilisation du contract.
-* plus de  specifications du produit et utilisation du fonctionnement.
-* plus de controle sur le fonctionnement du contract pour admin (owner) et utilisateure normale.
-* plus de design (design simplifie et subtle pour l'utilisation).
-* resoudre l'erreur du non redirection a la page de success apres form handling on landing page.
-* Passer complètement aux contrats HTS plutôt qu’aux contrats Hedera basés sur ERC20 enveloppés et IERC20.
-* Renforcer la logique fonctionnelle liée à la répartition entre la décentralisation et la centralisation de certaines fonctions à l’intérieur des contrats.
-* implementation finale.
+Intégration accrue du contrat.
+
+Précisions sur les spécifications et le fonctionnement.
+
+Contrôle amélioré pour l'admin (propriétaire) et l'utilisateur normal.
+
+Design simplifié et discret pour l'usage.
+
+Correction de l'erreur de redirection vers la page de succès après le traitement du formulaire.
+
+Passage complet aux contrats HTS au lieu des contrats ERC20 et IERC721 enveloppés.
+
+Renforcement de la logique entre décentralisation et centralisation des fonctions dans les contrats.
+
+Implémentation finale.
 ---
 
 

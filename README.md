@@ -62,7 +62,12 @@ FIXÉ : prompt d'ajout du testnet du réseau Hedera s'il n'est pas présent, ave
 
  📘 **Licence**
 
-Ce projet est open-source et distribué sous **licence MIT**.
+
+
+***NB : Tous les contrats utilisés dans le projet ont été développés et déployés dans un autre environnement, et ils appartiennent tous au même développeur.***
+
+
+Ce projet est distribué sous licence MIT et est protégé par les droits d’auteur du développeur [@rocker-bell](https://github.com/rocker-bell) .
 
 ---
 

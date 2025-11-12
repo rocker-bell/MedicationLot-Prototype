@@ -1,8 +1,16 @@
-# 💊 **PharmaExpert**
+# 💊 **MedicationLot - PharmaExpert**
 
- 🎯 **Objectif du projet**
+ **Objectif du projet**
 
-Le projet **PharmaExpert** vise à assurer une **traçabilité totale et infalsifiable** des médicaments, depuis leur fabrication jusqu’à leur délivrance au patient. L’objectif principal est de **combattre la contrefaçon** et les **anomalies logistiques** en garantissant la transparence et la sécurité des informations tout au long de la chaîne d'approvisionnement.
+   Le projet PharmaExpert a pour objectif d'assurer une traçabilité totale et infalsifiable des médicaments, depuis leur fabrication jusqu'à leur délivrance au patient. L’objectif principal est de combattre la contrefaçon et de résoudre les anomalies logistiques en garantissant la transparence et la sécurité des informations tout au long de la chaîne d'approvisionnement. Ce projet est réalisé grâce à la technologie blockchain et un ledger distribué Hedera Hashgraph, qui assure l'intégrité, la rapidité et la sécurité des données.
+
+  **Explication du choix de Hedera Hashgraph :**
+   
+    Scalabilité et Performance : Hedera Hashgraph peut traiter des milliers de transactions par seconde avec des frais faibles, ce qui est essentiel pour une gestion fluide des données dans l’industrie pharmaceutique.
+    
+    Sécurité et Intégrité des Données : Le mécanisme de consensus de Hedera garantit que les informations enregistrées dans le ledger ne peuvent pas être falsifiées ou altérées, ce qui est essentiel pour la traçabilité des médicaments.
+    
+    Transparence et Confiance : En utilisant un ledger public et immuable, toutes les parties prenantes (fabricants, distributeurs, pharmaciens, etc.) peuvent accéder à des informations vérifiables et transparentes sur l'origine des médicaments.
 
 ---
 

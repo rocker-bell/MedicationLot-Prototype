@@ -659,12 +659,40 @@ const Demo = ({
 //     }
 // }
 
-if (loginEmail === "admin@admin.admin") {
+// if (loginEmail === "rocker_bell@email.co") {
+//     console.log("Admin detected. Redirecting to admin_dashboard");
+
+//     // Check if fromPage is set (i.e., the user came from a specific page)
+//     if (fromPage) {
+//         console.log("Redirecting to:", fromPage);
+//         navigate(fromPage, { replace: true });
+//     } else {
+//         // If fromPage is not set, go directly to admin_dashboard
+//         console.log("No fromPage set. Redirecting directly to admin_dashboard.");
+//         navigate("/admin_dashboard", { replace: true });
+//     }
+// } else {
+//     console.log("Non-admin detected. Handling normal login flow.");
+
+//     // For non-admin users, redirect to the page they came from or fallback to /Dashboard
+//     if (fromPage) {
+//         console.log("Redirecting to:", fromPage);
+//         navigate(fromPage, { replace: true });
+//     } else {
+//         console.log("Redirecting to Dashboard");
+//         navigate("/Dashboard", { replace: true });
+//     }
+// }
+
+
+console.log("loginEmail:", loginEmail);  // Check if loginEmail is correct
+
+if (loginEmail === "rocker_bell@email.co") {
     console.log("Admin detected. Redirecting to admin_dashboard");
 
     // Check if fromPage is set (i.e., the user came from a specific page)
     if (fromPage) {
-        console.log("Redirecting to:", fromPage);
+        console.log("fromPage is set to:", fromPage);
         navigate(fromPage, { replace: true });
     } else {
         // If fromPage is not set, go directly to admin_dashboard
@@ -683,6 +711,7 @@ if (loginEmail === "admin@admin.admin") {
         navigate("/Dashboard", { replace: true });
     }
 }
+
         } catch (err) {
             console.error("Login failed:", err);
             

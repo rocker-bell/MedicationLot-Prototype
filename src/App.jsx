@@ -171,7 +171,7 @@ const App = () => {
 
 
                 <Route 
-                        path="/dashboard_admin" 
+                        path="admin_dashboard" 
                         element={
                             <Dashboard_Admin
                                 userData={userData} 

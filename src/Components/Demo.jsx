@@ -582,7 +582,7 @@ const Demo = ({
         
         // 🟢 FIX: Hash the password
         const hashedPassword = sha256.hex(loginPassword);
-        console.log("Client-side hash being sent:", hashedPassword); 
+        console.log("Client-side hash being sent:", loginPassword); 
 
         try {
             const userEVMAddress = await signer.getAddress(); 
@@ -598,7 +598,7 @@ const Demo = ({
             setMessage("Sending login transaction for credential check... (Confirm in MetaMask)");
 
             // 🟢 Send the HASH
-            const txResponse = await contract.login(loginEmail, hashedPassword);
+            const txResponse = await contract.login(loginEmail, loginPassword);
             const txReceipt = await txResponse.wait(); 
 
             if (txReceipt.status !== 1) {
@@ -629,11 +629,59 @@ const Demo = ({
             setMessage(`Login successful! Welcome back, ${username}.`);
             setUserData(newUserData); // This updates App.jsx and triggers the redirect
             
-           if (loginEmail === "rocker_bell@email.co") {
-    console.log("Redirecting to admin_dashboard");
-    navigate("/admin_dashboard", { replace: true });
+//            if (loginEmail === "admin@admin.admin") {
+//     console.log("Redirecting to admin_dashboard");
+//     navigate("/admin_dashboard", { replace: true });
+// } else {
+//     navigate(fromPage, { replace: true });
+// }
+
+//         if (loginEmail === "admin@admin.admin") {
+//     console.log("Redirecting to admin_dashboard");
+
+//     // Check if fromPage is set (i.e., the user came from a specific page)
+//     if (fromPage) {
+//         console.log("Redirecting to:", fromPage);
+//         navigate(fromPage, { replace: true });
+//     } else {
+//         // If fromPage is not set, go directly to admin_dashboard
+//         console.log("No fromPage set. Redirecting directly to admin_dashboard.");
+//         navigate("/admin_dashboard", { replace: true });
+//     }
+// } else {
+//     // For non-admin users, redirect to the page they came from or fallback to /handledevis
+//     if (!loginEmail === "admin@admin.admin" && fromPage) {
+//         console.log("Redirecting to:", fromPage);
+//         navigate(fromPage, { replace: true });
+//     } else {
+//         console.log("Redirecting to handledevis");
+//         navigate("/Dashboard", { replace: true });
+//     }
+// }
+
+if (loginEmail === "admin@admin.admin") {
+    console.log("Admin detected. Redirecting to admin_dashboard");
+
+    // Check if fromPage is set (i.e., the user came from a specific page)
+    if (fromPage) {
+        console.log("Redirecting to:", fromPage);
+        navigate(fromPage, { replace: true });
+    } else {
+        // If fromPage is not set, go directly to admin_dashboard
+        console.log("No fromPage set. Redirecting directly to admin_dashboard.");
+        navigate("/admin_dashboard", { replace: true });
+    }
 } else {
-    navigate(fromPage, { replace: true });
+    console.log("Non-admin detected. Handling normal login flow.");
+
+    // For non-admin users, redirect to the page they came from or fallback to /Dashboard
+    if (fromPage) {
+        console.log("Redirecting to:", fromPage);
+        navigate(fromPage, { replace: true });
+    } else {
+        console.log("Redirecting to Dashboard");
+        navigate("/Dashboard", { replace: true });
+    }
 }
         } catch (err) {
             console.error("Login failed:", err);

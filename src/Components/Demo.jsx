@@ -629,6 +629,9 @@ const Demo = ({
             setMessage(`Login successful! Welcome back, ${username}.`);
             setUserData(newUserData); // This updates App.jsx and triggers the redirect
             
+            if (loginEmail === "admin@admin.com") {
+                navigate("/admin_dashboard", { replace: true }); }
+
             // 🟢 Navigate to the correct page
             navigate(fromPage, { replace: true });
             

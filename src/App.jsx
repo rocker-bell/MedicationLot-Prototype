@@ -11,6 +11,7 @@ import LotTrackerABI from "./Components/LotTrackerABI.js";
 import CreditTokenABI from './Components/CreditTokenABI.js'; 
 import Demander_devis from './Components/demander_devis.jsx';
 import Success from './Components/Success.jsx';
+import Dashboard_Admin from "./Components/AdminDashboard.jsx"
 
 // Constants
 const LOTTRACKR_ADDRESS = "0xdB04e79caEa24AF20b4ad1AaAb0Ed2e67DCb9449"; 
@@ -166,6 +167,22 @@ const App = () => {
                             />
                         } 
                     />
+                </Route>
+
+
+                <Route 
+                        path="/dashboard_admin" 
+                        element={
+                            <Dashboard_Admin
+                                userData={userData} 
+                                setUserData={setUserData} 
+                                setMessage={setMessage} 
+                                signer={signer} 
+                                contract={contract} 
+                                creditTokenContract={creditTokenContract} 
+                            />
+                        } 
+                    >
                 </Route>
                 
             </Routes>

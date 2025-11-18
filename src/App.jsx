@@ -153,7 +153,7 @@ const App = () => {
                 />
 
                 {/* 3. Protected Routes Group */}
-                <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} redirectPath="/Demo" />}>
+                {/* <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} redirectPath="/Demo" />}>
                     <Route 
                         path="/Dashboard" 
                         element={
@@ -183,7 +183,43 @@ const App = () => {
                             />
                         } 
                     >
-                </Route>
+                </Route> */}
+
+
+                 {/* Protected Routes (Requires login) */}
+            <Route element={<ProtectedRoute isLoggedIn={!!userData?.address} />}>
+                
+                {/* USER Dashboard */}
+                <Route 
+                    path="/Dashboard" 
+                    element={
+                        <Dashboard 
+                            userData={userData} 
+                            setUserData={setUserData} 
+                            signer={signer}
+                            contract={contract}
+                            setMessage={setMessage}
+                            creditTokenContract={creditTokenContract}
+                        />
+                    } 
+                />
+
+                {/* ADMIN Dashboard (THIS IS THE ONE YOU WANT TO ADD) */}
+                <Route 
+                    path="/admin_dashboard" 
+                    element={
+                        <Dashboard_Admin
+                            userData={userData}
+                            setUserData={setUserData}
+                            setMessage={setMessage}
+                            signer={signer}
+                            contract={contract}
+                            creditTokenContract={creditTokenContract}
+                        />
+                    } 
+                />
+
+            </Route>
                 
             </Routes>
         </>

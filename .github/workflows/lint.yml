@@ -154,9 +154,13 @@ jobs:
       - name: Check ESLint version
         run: npx eslint --version
 
+      - name: List JS/JSX files
+        run: |
+          echo "Files ESLint will check:"
+          find ./src -type f \( -name "*.js" -o -name "*.jsx" \)
+
       - name: Run ESLint
-        # Use double quotes for Linux shell, remove quotes around glob
-        run: npx eslint ./src/**/*.{js,jsx} --max-warnings=0
+        run: npx eslint ./src --ext .js,.jsx --max-warnings=0
 
   stylelint:
     name: Stylelint
@@ -174,5 +178,10 @@ jobs:
       - name: Check Stylelint version
         run: npx stylelint --version
 
+      - name: List CSS/SCSS files
+        run: |
+          echo "Files Stylelint will check:"
+          find ./src -type f \( -name "*.css" -o -name "*.scss" \)
+
       - name: Run Stylelint
-        run: npx stylelint ./src/**/*.{css,scss}
+        run: npx stylelint ./src --ext .css,.scss

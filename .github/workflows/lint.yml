@@ -22,8 +22,9 @@ jobs:
       - name: Check ESLint version
         run: npx eslint --version
 
-      - name: Run ESLint
-        run: npx eslint ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js
+      - name: Run ESLint (force ESM)
+        run: node --experimental-specifier-resolution=node ./node_modules/.bin/eslint ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js
+
 
   stylelint:
     name: Stylelint

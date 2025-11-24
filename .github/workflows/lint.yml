@@ -126,6 +126,48 @@
 
 
 
+# name: Linters
+
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+
+# jobs:
+#   lint:
+#     runs-on: ubuntu-22.04
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Run ESLint (ESM + SARIF)
+#         run: |
+#           mkdir -p reports
+#           node --experimental-specifier-resolution=node node_modules/eslint/lib/cli.js \
+#             ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js -f sarif -o reports/eslint.sarif
+
+#       - name: Upload ESLint SARIF
+#         uses: github/codeql-action/upload-sarif@v2
+#         with:
+#           sarif_file: reports/eslint.sarif
+
+#       - name: Run Stylelint (SARIF)
+#         run: |
+#           mkdir -p reports
+#           npx stylelint './src/**/*.{css,scss}' --formatter sarif > reports/stylelint.sarif || true
+
+#       - name: Upload Stylelint SARIF
+#         uses: github/codeql-action/upload-sarif@v2
+#         with:
+#           sarif_file: reports/stylelint.sarif
+
+
 name: Linters
 
 on:
@@ -134,36 +176,36 @@ on:
   pull_request:
 
 jobs:
-  lint:
+  eslint:
+    name: ESLint
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18.x'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint (ESM + SARIF)
-        run: |
-          mkdir -p reports
-          node --experimental-specifier-resolution=node node_modules/eslint/lib/cli.js \
-            ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js -f sarif -o reports/eslint.sarif
+      - name: Run ESLint
+        run: npx eslint ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js
 
-      - name: Upload ESLint SARIF
-        uses: github/codeql-action/upload-sarif@v2
+  stylelint:
+    name: Stylelint
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
         with:
-          sarif_file: reports/eslint.sarif
+          node-version: '18.x'
 
-      - name: Run Stylelint (SARIF)
-        run: |
-          mkdir -p reports
-          npx stylelint './src/**/*.{css,scss}' --formatter sarif > reports/stylelint.sarif || true
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
 
-      - name: Upload Stylelint SARIF
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: reports/stylelint.sarif
+      - name: Run Stylelint
+        run: npx stylelint "./src/**/*.{css,scss}" --allow-empty-input
+
 

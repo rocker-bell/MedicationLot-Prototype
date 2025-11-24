@@ -160,7 +160,7 @@ jobs:
           find ./src -type f \( -name "*.js" -o -name "*.jsx" \)
 
       - name: Run ESLint
-        run: npx eslint ./src --ext .js,.jsx --max-warnings=0
+        run: npx eslint ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js
 
   stylelint:
     name: Stylelint

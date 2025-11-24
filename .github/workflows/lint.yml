@@ -143,6 +143,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
@@ -154,13 +155,15 @@ jobs:
         run: npx eslint --version
 
       - name: Run ESLint
-        run: npx eslint './src/**/*.{js,jsx}'
+        # Use double quotes for Linux shell, remove quotes around glob
+        run: npx eslint ./src/**/*.{js,jsx} --max-warnings=0
 
   stylelint:
     name: Stylelint
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
@@ -172,4 +175,4 @@ jobs:
         run: npx stylelint --version
 
       - name: Run Stylelint
-        run: npx stylelint './src/**/*.{css,scss}'
+        run: npx stylelint ./src/**/*.{css,scss}

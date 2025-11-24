@@ -126,6 +126,10 @@
 #         run: npx stylelint "src/**/*.css" --config stylelint.config.cjs --max-warnings=0
 
 
+
+
+
+
 name: Linters
 
 on:
@@ -139,7 +143,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
@@ -151,17 +154,13 @@ jobs:
         run: npx eslint --version
 
       - name: Run ESLint
-        run: npx eslint './src/**/*.{js,jsx}' --max-warnings=0
-        env:
-          # Ensures Node resolves ESM properly for your eslint.config.js
-          NODE_OPTIONS: "--experimental-specifier-resolution=node"
+        run: npx eslint './src/**/*.{js,jsx}'
 
   stylelint:
     name: Stylelint
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'

@@ -214,7 +214,7 @@ name: Linters
 
 on:
   push:
-    branches: [main]
+    branches: [main, safe/merge]
   pull_request:
 
 jobs:

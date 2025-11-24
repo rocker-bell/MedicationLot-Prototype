@@ -1,5 +1,3 @@
-
-
 /* Container for the logo */
 .logo-container {
   align-items: center;
@@ -21,14 +19,14 @@
 
 /* Logo title (FIND) */
 .logo-title {
-  color: #E95420;
+  color: #e95420;
   font-size: 1.25rem; /* Adjust the size as needed */
   font-weight: 700; /* Bold text */
 }
 
 /* Logo subtitle (TRANSPORTATION) */
 .logo-subtitle {
-  color: #4A4A4A; /* Dark gray color */
+  color: #4a4a4a; /* Dark gray color */
   font-size: 0.75rem; /* Small text */
   letter-spacing: 0.05em; /* Letter spacing */
 }

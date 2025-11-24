@@ -1,5 +1,3 @@
-
-
 /* Demo.css */
 .DemoWrapper {
   background-color: #fff;
@@ -87,7 +85,8 @@
   width: 100%;
 }
 
-.DemoLogin, .DemoRegister {
+.DemoLogin,
+.DemoRegister {
   height: 100%;
   padding: 20px;
 }

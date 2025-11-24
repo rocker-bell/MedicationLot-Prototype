@@ -44,6 +44,57 @@
 
 
 
+# name: Linters
+
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+
+# jobs:
+#   eslint:
+#     name: ESLint
+#     runs-on: ubuntu-22.04
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+#           cache: npm
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Check ESLint version
+#         run: npx eslint --version
+
+#       - name: Run ESLint
+#         run: npx eslint "src/**/*.{js,jsx}" --config eslint.config.js
+
+#   stylelint:
+#     name: Stylelint
+#     runs-on: ubuntu-22.04
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       - name: Setup Node
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+#           cache: npm
+
+#       - name: Install dependencies
+#         run: npm ci --legacy-peer-deps
+
+#       - name: Check Stylelint version
+#         run: npx stylelint --version
+
+#       - name: Run Stylelint
+#         run: npx stylelint "src/**/*.css" --config stylelint.config.cjs
+
+
 name: Linters
 
 on:
@@ -53,43 +104,23 @@ on:
 
 jobs:
   eslint:
-    name: ESLint
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Check ESLint version
-        run: npx eslint --version
-
+      - run: npm ci
       - name: Run ESLint
-        run: npx eslint "src/**/*.{js,jsx}" --config eslint.config.js
+        run: npx eslint "src/**/*.{js,jsx}" --config eslint.config.js --max-warnings=0
 
   stylelint:
-    name: Stylelint
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
-      - name: Check Stylelint version
-        run: npx stylelint --version
-
+      - run: npm ci --legacy-peer-deps
       - name: Run Stylelint
-        run: npx stylelint "src/**/*.css" --config stylelint.config.cjs
+        run: npx stylelint "src/**/*.css" --config stylelint.config.cjs --max-warnings=0

@@ -2,22 +2,22 @@
 
 /* Demo.css */
 .DemoWrapper {
-  width: 100%;
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 20px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  font-family: Arial, sans-serif;
+  margin: 50px auto;
+  max-width: 700px;
+  padding: 20px;
+  width: 100%;
 }
 
 .back-link {
-  display: block;
-  margin-bottom: 20px;
   color: #4caf50;
-  text-decoration: none;
+  display: block;
   font-weight: 500;
+  margin-bottom: 20px;
+  text-decoration: none;
 }
 
 .back-link:hover {
@@ -25,31 +25,31 @@
 }
 
 .ContainerLogin_register {
-  position: relative;
-  overflow: hidden;
   border-radius: 8px;
+  overflow: hidden;
+  position: relative;
 }
 
 .toggle-container {
-  display: flex;
-  margin-bottom: 20px;
   background-color: #f5f5f5;
   border-radius: 8px;
-  padding: 4px;
+  display: flex;
   gap: 10px;
+  margin-bottom: 20px;
+  padding: 4px;
 }
 
 .toggle-btn {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
   background-color: transparent;
   border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
   border-radius: 6px;
-  font-weight: 500;
   color: white;
+  cursor: pointer;
+  flex: 1;
+  font-weight: 500;
+  padding: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .login-toggle {
@@ -67,24 +67,24 @@
 
 /* Slide container styles */
 .forms-container {
+  display: flex;
+  height: 380px;
   position: relative;
   width: 100%;
-  height: 380px;
-  display: flex;
 }
 
 .forms-inner {
   display: flex;
-  width: 100%;
   transition: transform 0.4s ease-in-out;
+  width: 100%;
 }
 
 .form-container {
-  width: 100%;
-  flex-shrink: 0;
-  padding: 20px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  padding: 20px;
+  width: 100%;
 }
 
 .DemoLogin, .DemoRegister {
@@ -93,10 +93,10 @@
 }
 
 .form-container h3 {
-  margin-bottom: 20px;
   color: #333;
-  text-align: center;
   font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Form styles */
@@ -105,40 +105,40 @@
 }
 
 .form-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
   color: #444;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .form-control {
-  width: 100%;
-  padding: 12px;
-  border-radius: 6px;
   border: 1px solid #ddd;
+  border-radius: 6px;
   box-sizing: border-box;
   font-size: 14px;
+  padding: 12px;
   transition: border-color 0.3s ease;
+  width: 100%;
 }
 
 .form-control:focus {
   border-color: #4caf50;
+  box-shadow: 0 0 0 2px rgb(76 175 80 / 20%);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
 .submit-btn {
-  width: 100%;
-  padding: 12px;
   background-color: #4caf50;
-  color: white;
   border: none;
   border-radius: 6px;
+  color: white;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
   margin-top: 10px;
+  padding: 12px;
   transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .submit-btn:hover {
@@ -155,16 +155,16 @@
 
 /* Swipe indicator */
 .swipe-indicator {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .swipe-indicator span {
-  font-size: 14px;
   color: #666;
+  font-size: 14px;
 }
 
 .swipe-dots {
@@ -173,11 +173,11 @@
 }
 
 .swipe-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
   background-color: #ddd;
+  border-radius: 50%;
+  height: 10px;
   transition: background-color 0.3s ease;
+  width: 10px;
 }
 
 .swipe-dot.active {
@@ -186,21 +186,21 @@
 
 /* Message styles */
 .form-message {
-  text-align: center;
-  margin-top: 20px;
-  padding: 10px;
   border-radius: 6px;
   font-weight: 500;
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
 }
 
 .form-message.error {
+  background-color: rgb(211 47 47 / 10%);
   color: #d32f2f;
-  background-color: rgba(211, 47, 47, 0.1);
 }
 
 .form-message.success {
+  background-color: rgb(56 142 60 / 10%);
   color: #388e3c;
-  background-color: rgba(56, 142, 60, 0.1);
 }
 
 /* Responsive adjustments */

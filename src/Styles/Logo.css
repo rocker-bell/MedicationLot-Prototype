@@ -2,8 +2,8 @@
 
 /* Container for the logo */
 .logo-container {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 10px;  /* Space between the icon and the text */
 }
 
@@ -22,8 +22,8 @@
 /* Logo title (FIND) */
 .logo-title {
   color: #E95420;
-  font-weight: 700; /* Bold text */
   font-size: 1.25rem; /* Adjust the size as needed */
+  font-weight: 700; /* Bold text */
 }
 
 /* Logo subtitle (TRANSPORTATION) */

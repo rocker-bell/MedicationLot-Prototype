@@ -10,8 +10,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
-    "lint:js": "eslint 'src/**/*.{js,jsx}' --config eslint.config.js",
-    "lint:css": "stylelint 'src/**/*.css' --config stylelint.config.cjs",
+    "lint:js": "eslint \"src/**/*.{js,jsx}\" --config eslint.config.js --max-warnings=0",
+    "lint:css": "stylelint \"src/**/*.css\" --config stylelint.config.cjs --max-warnings=0",
     "lint": "npm run lint:js && npm run lint:css"
   },
   "dependencies": {

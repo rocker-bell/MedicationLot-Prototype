@@ -1,49 +1,50 @@
 
 .dashboard-page {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
+
 .nav-bar {
+  align-items: center;
   background: #222;
   color: #fff;
-  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 1rem 2rem;
 }
 
 .logout-btn {
   background: #f53b57;
   border: none;
-  color: #fff;
-  padding: 0.6rem 1rem;
   border-radius: 6px;
+  color: #fff;
   cursor: pointer;
+  padding: 0.6rem 1rem;
 }
 
 .profile-header {
   background: #fff;
-  padding: 1.5rem 2rem;
   border-bottom: 1px solid #eee;
+  padding: 1.5rem 2rem;
 }
 
 .profile-info {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 1rem;
 }
 
 .avatar {
-  background: #ff7f50;
-  color: white;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  font-weight: bold;
+  background: #ff7f50;
+  border-radius: 50%;
+  color: white;
+  display: flex;
   font-size: 18px;
+  font-weight: bold;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
 }
 
 .main-content {
@@ -57,25 +58,25 @@
 }
 
 .tabs button {
-  border: 1px solid #ccc;
   background: #f1f1f1;
-  padding: 0.6rem 1.2rem;
+  border: 1px solid #ccc;
   border-radius: 20px;
   cursor: pointer;
   font-weight: 500;
+  padding: 0.6rem 1.2rem;
 }
 
 .tabs button.active {
   background: #ff7f50;
-  color: #fff;
   border-color: #ff7f50;
+  color: #fff;
 }
 
 .new-order .form-container {
   background: #fff;
-  padding: 1.5rem;
   border-radius: 10px;
   margin-top: 1.5rem;
+  padding: 1.5rem;
 }
 
 .form-row {
@@ -85,8 +86,8 @@
 }
 
 .form-row div {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
 }
 
@@ -96,37 +97,37 @@ label {
 }
 
 input, select, textarea {
-  padding: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 6px;
+  padding: 0.6rem;
 }
 
 textarea {
-  resize: none;
   height: 80px;
+  resize: none;
 }
 
 .form-actions {
   display: flex;
-  justify-content: flex-end;
   gap: 1rem;
+  justify-content: flex-end;
 }
 
 .clear-btn {
   background: #f1f1f1;
   border: none;
-  padding: 0.6rem 1.2rem;
   border-radius: 6px;
   cursor: pointer;
+  padding: 0.6rem 1.2rem;
 }
 
 .submit-btn {
   background: #ff7f50;
   border: none;
-  color: #fff;
-  padding: 0.6rem 1.4rem;
   border-radius: 6px;
+  color: #fff;
   cursor: pointer;
+  padding: 0.6rem 1.4rem;
 }
 
 .stats {
@@ -137,23 +138,23 @@ textarea {
 
 .card {
   background: #fff;
-  padding: 1rem;
   border-radius: 10px;
   flex: 1;
+  padding: 1rem;
 }
 
 .card .highlight {
+  color: #ff7f50;
   font-size: 20px;
   font-weight: bold;
-  color: #ff7f50;
 }
 
 .status.active {
   background: #d4edda;
-  color: #155724;
-  padding: 0.2rem 0.6rem;
   border-radius: 4px;
+  color: #155724;
   font-size: 12px;
+  padding: 0.2rem 0.6rem;
 }
 
 .order-history {
@@ -161,20 +162,20 @@ textarea {
 }
 
 .order-card {
+  align-items: center;
   background: #fff;
-  padding: 1rem;
-  margin-bottom: 1rem;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
 }
 
 .order-status {
-  font-weight: bold;
-  padding: 0.3rem 0.6rem;
   border-radius: 4px;
   font-size: 13px;
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
 }
 
 .order-status.completed {
@@ -194,12 +195,12 @@ textarea {
 
 .cancel-btn {
   background: #f53b57;
-  color: white;
   border: none;
-  padding: 0.4rem 0.8rem;
   border-radius: 5px;
-  margin-top: 0.3rem;
+  color: white;
   cursor: pointer;
+  margin-top: 0.3rem;
+  padding: 0.4rem 0.8rem;
 }
 
 .order-cost {

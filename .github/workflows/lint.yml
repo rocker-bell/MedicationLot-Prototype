@@ -168,6 +168,48 @@
 #           sarif_file: reports/stylelint.sarif
 
 
+# name: Linters
+
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+
+# jobs:
+#   eslint:
+#     name: ESLint
+#     runs-on: ubuntu-22.04
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: '18.x'
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Run ESLint
+#         run: npx eslint ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js
+
+#   stylelint:
+#     name: Stylelint
+#     runs-on: ubuntu-22.04
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: '18.x'
+
+#       - name: Install dependencies
+#         run: npm ci --legacy-peer-deps
+
+#       - name: Run Stylelint
+#         run: npx stylelint "./src/**/*.{css,scss}" --allow-empty-input
+
+
+
 name: Linters
 
 on:
@@ -176,13 +218,15 @@ on:
   pull_request:
 
 jobs:
-  eslint:
-    name: ESLint
+  lint:
+    name: Run All Linters
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
@@ -192,20 +236,6 @@ jobs:
       - name: Run ESLint
         run: npx eslint ./src --ext .js,.jsx --max-warnings=0 --config eslint.config.js
 
-  stylelint:
-    name: Stylelint
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
       - name: Run Stylelint
         run: npx stylelint "./src/**/*.{css,scss}" --allow-empty-input
-
 

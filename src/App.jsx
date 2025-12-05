@@ -185,6 +185,21 @@ const App = () => {
                     >
                 </Route> */}
 
+                 <Route 
+                        path="admin_dashboard" 
+                        element={
+                            <Dashboard_Admin
+                                userData={userData} 
+                                setUserData={setUserData} 
+                                setMessage={setMessage} 
+                                signer={signer} 
+                                contract={contract} 
+                                creditTokenContract={creditTokenContract} 
+                            />
+                        } 
+                    >
+                </Route> 
+
 
                  {/* Protected Routes (Requires login) */}
             <Route element={<ProtectedRoute isLoggedIn={!!userData?.address} />}>
@@ -204,20 +219,7 @@ const App = () => {
                     } 
                 />
 
-                {/* ADMIN Dashboard (THIS IS THE ONE YOU WANT TO ADD) */}
-                <Route 
-                    path="/admin_dashboard" 
-                    element={
-                        <Dashboard_Admin
-                            userData={userData}
-                            setUserData={setUserData}
-                            setMessage={setMessage}
-                            signer={signer}
-                            contract={contract}
-                            creditTokenContract={creditTokenContract}
-                        />
-                    } 
-                />
+               {/* ADMIN Dashboard (THIS IS THE ONE YOU WANT TO ADD) */}
 
             </Route>
                 

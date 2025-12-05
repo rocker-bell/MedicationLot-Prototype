@@ -3,7 +3,7 @@
 import React, { useEffect,useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../Styles/Landing_page.css"; // Import the CSS for styling
-import HederaLogo from "../Assets/hedera-logo.png"; // Import the logo image
+import HederaLogo from "../Assets/Logo.svg"; // Import the logo image
 
 const Landing_page = () => {
   const location = useLocation(); // Import and use location to get state
@@ -165,7 +165,7 @@ const handleValidation = (e) => {
         <div className="container nav">
           <div className="brand">
             <div className="logo">
-              <img src={HederaLogo} alt="Hedera Logo" />
+              <img src={HederaLogo} alt="Hedera Logo" className="Logo" />
             </div>
             <span>PharmaExpert</span>
           </div>
@@ -502,9 +502,12 @@ const handleValidation = (e) => {
       {/* Footer Section */}
       <footer className="site-footer">
         <div className="container footer-grid">
-          <div>
+          <div className="footer-header">
+          <img src={HederaLogo} alt="Hedera Logo" className="Logo_footer" />
+          <div className="footer_Logo_elements">
             <strong> PharmaExpert</strong>
             <p>Expert en traçabilité pharmaceutique et lutte contre la contrefaçon.</p>
+          </div>
           </div>
           <div className="footer-links">
              <a href="#mission" onClick={(e) => handleScrollToSection(e, "mission")}>Mission</a>

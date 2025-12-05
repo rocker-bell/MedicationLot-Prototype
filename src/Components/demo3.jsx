@@ -292,14 +292,14 @@
 //                                     onChange={(e) => setRegisterEmail(e.target.value)}
 //                                     required
 //                                     className="form-control"
-//                                 />
-//                                 <label className="from-label">password</label>
-//                                 <input
-//                                     type="password"
-//                                     placeholder="Password"
-//                                     value={registerPassword}
-//                                     onChange={(e) => setRegisterPassword(e.target.value)}
-//                                     required
-//                                     className="form-control"
-//                                 />
-//                                 <button type="submit" disabled={!signer} className="submit-btn register-btn">Register</Two r
+                                // />
+                                // <label className="from-label">password</label>
+                                // <input
+                                //     type="password"
+                                //     placeholder="Password"
+                                //     value={registerPassword}
+                                //     onChange={(e) => setRegisterPassword(e.target.value)}
+                                //     required
+                                //     className="form-control"
+                                // />
+                                // <button type="submit" disabled={!signer} className="submit-btn register-btn">Register</Two r

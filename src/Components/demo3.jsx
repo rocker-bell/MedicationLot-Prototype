@@ -1,305 +1,305 @@
-import { useState, useEffect, useCallback } from "react"; // 🟢 Import useCallback
-import { Link, useNavigate, useLocation } from "react-router-dom";
-// 🟢 Import all necessary ethers components
-import { BrowserProvider, Contract, formatUnits, ethers } from "ethers"; 
-import contractABI from "./UserAuthABI"; 
-import "../Styles/Demo.css";
-import { sha256 } from 'js-sha256'; // 🟢 IMPORTED: sha256 for hashing
+// import { useState, useEffect, useCallback } from "react"; // 🟢 Import useCallback
+// import { Link, useNavigate, useLocation } from "react-router-dom";
+// // 🟢 Import all necessary ethers components
+// import { BrowserProvider, Contract, formatUnits, ethers } from "ethers"; 
+// import contractABI from "./UserAuthABI"; 
+// import "../Styles/Demo.css";
+// import { sha256 } from 'js-sha256'; // 🟢 IMPORTED: sha256 for hashing
 
-// Your contract's EVM address
-const contractAddress = "0xdbc22b309b0c46e43c08d39c7f8acf119e091651";  
-const HEDERA_TESTNET_CHAIN_ID = '0x128'; 
+// // Your contract's EVM address
+// const contractAddress = "0xdbc22b309b0c46e43c08d39c7f8acf119e091651";  
+// const HEDERA_TESTNET_CHAIN_ID = '0x128'; 
 
-const Demo = ({ 
-    userData, 
-    setUserData, 
-    signer, 
-    setSigner, 
-    contract, 
-    setContract, 
-    message, 
-    setMessage
-}) => {
+// const Demo = ({ 
+//     userData, 
+//     setUserData, 
+//     signer, 
+//     setSigner, 
+//     contract, 
+//     setContract, 
+//     message, 
+//     setMessage
+// }) => {
     
-    const navigate = useNavigate();
-    const location = useLocation();
-    const fromPage = location.state?.from || "/Dashboard";
+//     const navigate = useNavigate();
+//     const location = useLocation();
+//     const fromPage = location.state?.from || "/Dashboard";
     
-    const initialRegisterActive = location.state?.registerActive || false;
-    const [isLoginActive, setIsLoginActive] = useState(!initialRegisterActive);
+//     const initialRegisterActive = location.state?.registerActive || false;
+//     const [isLoginActive, setIsLoginActive] = useState(!initialRegisterActive);
 
-    // Input states
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-    const [registerUsername, setRegisterUsername] = useState("");
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
+//     // Input states
+//     const [loginEmail, setLoginEmail] = useState("");
+//     const [loginPassword, setLoginPassword] = useState("");
+//     const [registerUsername, setRegisterUsername] = useState("");
+//     const [registerEmail, setRegisterEmail] = useState("");
+//     const [registerPassword, setRegisterPassword] = useState("");
 
-    // Immediate redirect if user session exists
-    useEffect(() => {
-        if (userData && userData.address && signer) { // Also check for signer
-            navigate("/Dashboard", { replace: true });
-        }
-    }, [userData, signer, navigate]);
+//     // Immediate redirect if user session exists
+//     useEffect(() => {
+//         if (userData && userData.address && signer) { // Also check for signer
+//             navigate("/Dashboard", { replace: true });
+//         }
+//     }, [userData, signer, navigate]);
 
-    // --- 1. Connection and Initialization ---
-    // 🟢 FIX: Wrap in useCallback and provide dependencies
-    const connectAndSetup = useCallback(async () => {
-        // Guard clause in case props aren't ready
-        if (!setMessage || !setSigner || !setContract) {
-            console.warn("connectAndSetup called before props were ready.");
-            return;
-        }
+//     // --- 1. Connection and Initialization ---
+//     // 🟢 FIX: Wrap in useCallback and provide dependencies
+//     const connectAndSetup = useCallback(async () => {
+//         // Guard clause in case props aren't ready
+//         if (!setMessage || !setSigner || !setContract) {
+//             console.warn("connectAndSetup called before props were ready.");
+//             return;
+//         }
 
-        if (typeof window.ethereum === 'undefined') {
-            setMessage("MetaMask is not installed. Please install it.");
-            return;
-        }
+//         if (typeof window.ethereum === 'undefined') {
+//             setMessage("MetaMask is not installed. Please install it.");
+//             return;
+//         }
 
-        try {
-            const provider = new BrowserProvider(window.ethereum);
-            await provider.send("eth_requestAccounts", []);
+//         try {
+//             const provider = new BrowserProvider(window.ethereum);
+//             await provider.send("eth_requestAccounts", []);
             
-            const network = await provider.getNetwork();
-            if (network.chainId !== BigInt(HEDERA_TESTNET_CHAIN_ID)) {
-                setMessage("MetaMask is connected but on the wrong network. Please switch to Hedera Testnet.");
-                return;
-            }
+//             const network = await provider.getNetwork();
+//             if (network.chainId !== BigInt(HEDERA_TESTNET_CHAIN_ID)) {
+//                 setMessage("MetaMask is connected but on the wrong network. Please switch to Hedera Testnet.");
+//                 return;
+//             }
 
-            const _signer = await provider.getSigner();
-            setSigner(_signer); // This prop is now stable
+//             const _signer = await provider.getSigner();
+//             setSigner(_signer); // This prop is now stable
             
-            const _contract = new Contract(contractAddress, contractABI, _signer);
-            setContract(_contract); // This prop is now stable
+//             const _contract = new Contract(contractAddress, contractABI, _signer);
+//             setContract(_contract); // This prop is now stable
 
-            setMessage(`Wallet connected: ${_signer.address.substring(0, 6)}... on Hedera Testnet.`);
+//             setMessage(`Wallet connected: ${_signer.address.substring(0, 6)}... on Hedera Testnet.`);
 
-        } catch (error) {
-            console.error("MetaMask connection failed:", error);
-            setMessage(`Connection failed. Error: ${error.message || "User rejected connection or network error."}`);
-        }
-    }, [setMessage, setSigner, setContract]); // 🟢 Dependencies added
+//         } catch (error) {
+//             console.error("MetaMask connection failed:", error);
+//             setMessage(`Connection failed. Error: ${error.message || "User rejected connection or network error."}`);
+//         }
+//     }, [setMessage, setSigner, setContract]); // 🟢 Dependencies added
 
-    // 🟢 FIX: Add connectAndSetup and signer to the dependency array
-    useEffect(() => {
-        // Only run connect if signer isn't already set (e.g., from parent)
-        if (!signer) {
-            connectAndSetup();
-        }
+//     // 🟢 FIX: Add connectAndSetup and signer to the dependency array
+//     useEffect(() => {
+//         // Only run connect if signer isn't already set (e.g., from parent)
+//         if (!signer) {
+//             connectAndSetup();
+//         }
 
-        window.ethereum?.on('accountsChanged', connectAndSetup);
-        window.ethereum?.on('chainChanged', connectAndSetup);
+//         window.ethereum?.on('accountsChanged', connectAndSetup);
+//         window.ethereum?.on('chainChanged', connectAndSetup);
 
-        return () => {
-            window.ethereum?.removeListener('accountsChanged', connectAndSetup);
-            window.ethereum?.removeListener('chainChanged', connectAndSetup);
-        };
-    }, [connectAndSetup, signer]); // 🟢 Dependencies added
+//         return () => {
+//             window.ethereum?.removeListener('accountsChanged', connectAndSetup);
+//             window.ethereum?.removeListener('chainChanged', connectAndSetup);
+//         };
+//     }, [connectAndSetup, signer]); // 🟢 Dependencies added
 
-    // --- 2. Register ---
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        setMessage("");
+//     // --- 2. Register ---
+//     const handleRegister = async (e) => {
+//         e.preventDefault();
+//         setMessage("");
 
-        if (!contract || !signer) {
-            setMessage("Wallet not connected or contract not initialized.");
-            return;
-        }
+//         if (!contract || !signer) {
+//             setMessage("Wallet not connected or contract not initialized.");
+//             return;
+//         }
         
-        // 🟢 FIX: Hash the password before sending it
-        const hashedPassword = sha256.hex(registerPassword);
+//         // 🟢 FIX: Hash the password before sending it
+//         const hashedPassword = sha256.hex(registerPassword);
 
-        try {
-            setMessage("Sending registration transaction... (Confirm in MetaMask)");
+//         try {
+//             setMessage("Sending registration transaction... (Confirm in MetaMask)");
             
-            // Send the HASH, not the plain password
-            const txResponse = await contract.register(registerEmail, hashedPassword, registerUsername);
-            setMessage(`Transaction sent: ${txResponse.hash}. Waiting for confirmation...`);
+//             // Send the HASH, not the plain password
+//             const txResponse = await contract.register(registerEmail, hashedPassword, registerUsername);
+//             setMessage(`Transaction sent: ${txResponse.hash}. Waiting for confirmation...`);
 
-            const txReceipt = await txResponse.wait(); 
+//             const txReceipt = await txResponse.wait(); 
             
-            if (txReceipt.status === 1) { 
-                const creditTxResponse = await contract.requestCredits(100); 
-                await creditTxResponse.wait();
+//             if (txReceipt.status === 1) { 
+//                 const creditTxResponse = await contract.requestCredits(100); 
+//                 await creditTxResponse.wait();
                 
-                setMessage("Registration successful! 100 credits assigned. Switching to login.");
+//                 setMessage("Registration successful! 100 credits assigned. Switching to login.");
                 
-                setRegisterUsername("");
-                setRegisterEmail("");
-                setRegisterPassword("");
-                setIsLoginActive(true);
-            } else {
-                setMessage("Transaction reverted. Registration failed.");
-            }
-        } catch (err) {
-            console.error("Registration error:", err);
-            setMessage(`Registration failed. Error: ${err.reason || err.message}`);
-        }
-    };
+//                 setRegisterUsername("");
+//                 setRegisterEmail("");
+//                 setRegisterPassword("");
+//                 setIsLoginActive(true);
+//             } else {
+//                 setMessage("Transaction reverted. Registration failed.");
+//             }
+//         } catch (err) {
+//             console.error("Registration error:", err);
+//             setMessage(`Registration failed. Error: ${err.reason || err.message}`);
+//         }
+//     };
 
-    // --- 3. Login ---
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setMessage("");
+//     // --- 3. Login ---
+//     const handleLogin = async (e) => {
+//         e.preventDefault();
+//         setMessage("");
 
-        if (!contract || !signer) {
-            setMessage("Wallet not connected or contract not initialized.");
-            return;
-        }
+//         if (!contract || !signer) {
+//             setMessage("Wallet not connected or contract not initialized.");
+//             return;
+//         }
         
-        if (!loginPassword || !loginEmail) {
-            setMessage("Please enter both email and password.");
-            return;
-        }
+//         if (!loginPassword || !loginEmail) {
+//             setMessage("Please enter both email and password.");
+//             return;
+//         }
         
-        // 🟢 FIX: Hash the password
-        const hashedPassword = sha256.hex(loginPassword);
-        console.log("Client-side hash being sent:", hashedPassword); 
+//         // 🟢 FIX: Hash the password
+//         const hashedPassword = sha256.hex(loginPassword);
+//         console.log("Client-side hash being sent:", hashedPassword); 
 
-        try {
-            const userEVMAddress = await signer.getAddress(); 
+//         try {
+//             const userEVMAddress = await signer.getAddress(); 
             
-            setMessage("Checking account status...");
-            // 🟢 FIX: Use array access for reliability
-            const isBanned = await contract["getBannedStatus"](userEVMAddress);
-            if (isBanned) {
-                setMessage("🔴 Login failed. Your account has been banned from interaction.");
-                return; 
-            }
+//             setMessage("Checking account status...");
+//             // 🟢 FIX: Use array access for reliability
+//             const isBanned = await contract["getBannedStatus"](userEVMAddress);
+//             if (isBanned) {
+//                 setMessage("🔴 Login failed. Your account has been banned from interaction.");
+//                 return; 
+//             }
             
-            setMessage("Sending login transaction for credential check... (Confirm in MetaMask)");
+//             setMessage("Sending login transaction for credential check... (Confirm in MetaMask)");
 
-            // 🟢 Send the HASH
-            const txResponse = await contract.login(loginEmail, hashedPassword);
-            const txReceipt = await txResponse.wait(); 
+//             // 🟢 Send the HASH
+//             const txResponse = await contract.login(loginEmail, hashedPassword);
+//             const txReceipt = await txResponse.wait(); 
 
-            if (txReceipt.status !== 1) {
-                throw new Error("Login transaction failed on chain (status 0).");
-            }
+//             if (txReceipt.status !== 1) {
+//                 throw new Error("Login transaction failed on chain (status 0).");
+//             }
             
-            setMessage("Login successful! Fetching user data...");
+//             setMessage("Login successful! Fetching user data...");
 
-            // 4. Fetch User Data
-            // 🟢 FIX: Corrected destructuring order (email, username, creationTime)
-            const [email, username, creationTime] = await contract.getUserInfoByAddress(userEVMAddress);
+//             // 4. Fetch User Data
+//             // 🟢 FIX: Corrected destructuring order (email, username, creationTime)
+//             const [email, username, creationTime] = await contract.getUserInfoByAddress(userEVMAddress);
             
-            // Fetch Credits
-            const creditsBigInt = await contract.checkUserCredit(userEVMAddress);
+//             // Fetch Credits
+//             const creditsBigInt = await contract.checkUserCredit(userEVMAddress);
             
-            // 🟢 FIX: Use toString() for internal credit counter (0 decimals)
-            const creditsReadable = creditsBigInt.toString(); 
+//             // 🟢 FIX: Use toString() for internal credit counter (0 decimals)
+//             const creditsReadable = creditsBigInt.toString(); 
             
-            // Prepare and update the state
-            const newUserData = {
-                address: userEVMAddress,
-                email: email, 
-                username: username,
-                credits: creditsReadable,
-                creationTime: creationTime.toString()
-            };
+//             // Prepare and update the state
+//             const newUserData = {
+//                 address: userEVMAddress,
+//                 email: email, 
+//                 username: username,
+//                 credits: creditsReadable,
+//                 creationTime: creationTime.toString()
+//             };
 
-            setMessage(`Login successful! Welcome back, ${username}.`);
-            setUserData(newUserData); // This updates App.jsx and triggers the redirect
+//             setMessage(`Login successful! Welcome back, ${username}.`);
+//             setUserData(newUserData); // This updates App.jsx and triggers the redirect
             
-            // 🟢 Navigate to the correct page
-            navigate(fromPage, { replace: true });
+//             // 🟢 Navigate to the correct page
+//             navigate(fromPage, { replace: true });
             
-        } catch (err) {
-            console.error("Login failed:", err);
+//         } catch (err) {
+//             console.error("Login failed:", err);
             
-            const revertReason = err.reason || (err.data && err.data.message) || err.message;
+//             const revertReason = err.reason || (err.data && err.data.message) || err.message;
             
-            if (revertReason.includes("Account is banned")) {
-                 setMessage("🔴 Login failed. Your account is banned from interaction.");
-            } else if (revertReason.includes("User not registered")) {
-                setMessage("Login failed. The connected wallet is not registered.");
-            } else if (revertReason.includes("Invalid email or password")) {
-                setMessage("Login failed. Invalid email or password.");
-            } else {
-                setMessage(`Login failed. Check your wallet status. Error: ${revertReason}`); 
-            }
-        }
-    };
+//             if (revertReason.includes("Account is banned")) {
+//                  setMessage("🔴 Login failed. Your account is banned from interaction.");
+//             } else if (revertReason.includes("User not registered")) {
+//                 setMessage("Login failed. The connected wallet is not registered.");
+//             } else if (revertReason.includes("Invalid email or password")) {
+//                 setMessage("Login failed. Invalid email or password.");
+//             } else {
+//                 setMessage(`Login failed. Check your wallet status. Error: ${revertReason}`); 
+//             }
+//         }
+//     };
 
-    return (
-        <div className="DemoWrapper">
-            <Link to="/" className="back-link">← Back to Home</Link>
+//     return (
+//         <div className="DemoWrapper">
+//             <Link to="/" className="back-link">← Back to Home</Link>
 
-            <div className="ContainerLogin_register">
-                <div className="toggle-container">
-                    <button
-                        className={`toggle-btn login-toggle ${isLoginActive ? "active" : ""}`}
-                        onClick={() => setIsLoginActive(true)}
-                    >
-                        Login
-                    </button>
-                    <button
-                        className={`toggle-btn register-toggle ${!isLoginActive ? "active" : ""}`}
-                        onClick={() => setIsLoginActive(false)}
-                    >
-                        Register
-                    </button>
-                </div>
+//             <div className="ContainerLogin_register">
+//                 <div className="toggle-container">
+//                     <button
+//                         className={`toggle-btn login-toggle ${isLoginActive ? "active" : ""}`}
+//                         onClick={() => setIsLoginActive(true)}
+//                     >
+//                         Login
+//                     </button>
+//                     <button
+//                         className={`toggle-btn register-toggle ${!isLoginActive ? "active" : ""}`}
+//                         onClick={() => setIsLoginActive(false)}
+//                     >
+//                         Register
+//                     </button>
+//                 </div>
 
-                <div className="forms-container">
-                    {/* Login Form */}
-                    {isLoginActive && (
-                        <div className="form-container DemoLogin">
-                            <h3>Welcome Back</h3>
-                            <form onSubmit={handleLogin}>
-                                <label className="from-label">email</label>
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    value={loginEmail}
-                                    onChange={(e) => setLoginEmail(e.target.value)}
-                                    required
-                                    className="form-control"
-                                />
-                                <label className="from-label">password</label>
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    value={loginPassword}
-                                    onChange={(e) => setLoginPassword(e.target.value)}
-                                    required
-                                    className="form-control"
-                                />
-                                <button type="submit" disabled={!signer} className="submit-btn login-btn">Login</button>
-                            </form>
-                        </div>
-                    )}
+//                 <div className="forms-container">
+//                     {/* Login Form */}
+//                     {isLoginActive && (
+//                         <div className="form-container DemoLogin">
+//                             <h3>Welcome Back</h3>
+//                             <form onSubmit={handleLogin}>
+//                                 <label className="from-label">email</label>
+//                                 <input
+//                                     type="email"
+//                                     placeholder="Email"
+//                                     value={loginEmail}
+//                                     onChange={(e) => setLoginEmail(e.target.value)}
+//                                     required
+//                                     className="form-control"
+//                                 />
+//                                 <label className="from-label">password</label>
+//                                 <input
+//                                     type="password"
+//                                     placeholder="Password"
+//                                     value={loginPassword}
+//                                     onChange={(e) => setLoginPassword(e.target.value)}
+//                                     required
+//                                     className="form-control"
+//                                 />
+//                                 <button type="submit" disabled={!signer} className="submit-btn login-btn">Login</button>
+//                             </form>
+//                         </div>
+//                     )}
 
-                    {/* Register Form */}
-                    {!isLoginActive && (
-                        <div className="form-container DemoRegister">
-                            <h3>Create Account</h3>
-                            <form onSubmit={handleRegister}>
-                                <label className="from-label">username</label>
-                                <input
-                                    type="text"
-                                    placeholder="Username"
-                                    value={registerUsername}
-                                    onChange={(e) => setRegisterUsername(e.target.value)}
-                                    required
-                                    className="form-control"
-                                />
-                                <label className="from-label">email</label>
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    value={registerEmail}
-                                    onChange={(e) => setRegisterEmail(e.target.value)}
-                                    required
-                                    className="form-control"
-                                />
-                                <label className="from-label">password</label>
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    value={registerPassword}
-                                    onChange={(e) => setRegisterPassword(e.target.value)}
-                                    required
-                                    className="form-control"
-                                />
-                                <button type="submit" disabled={!signer} className="submit-btn register-btn">Register</Two r
+//                     {/* Register Form */}
+//                     {!isLoginActive && (
+//                         <div className="form-container DemoRegister">
+//                             <h3>Create Account</h3>
+//                             <form onSubmit={handleRegister}>
+//                                 <label className="from-label">username</label>
+//                                 <input
+//                                     type="text"
+//                                     placeholder="Username"
+//                                     value={registerUsername}
+//                                     onChange={(e) => setRegisterUsername(e.target.value)}
+//                                     required
+//                                     className="form-control"
+//                                 />
+//                                 <label className="from-label">email</label>
+//                                 <input
+//                                     type="email"
+//                                     placeholder="Email"
+//                                     value={registerEmail}
+//                                     onChange={(e) => setRegisterEmail(e.target.value)}
+//                                     required
+//                                     className="form-control"
+//                                 />
+//                                 <label className="from-label">password</label>
+//                                 <input
+//                                     type="password"
+//                                     placeholder="Password"
+//                                     value={registerPassword}
+//                                     onChange={(e) => setRegisterPassword(e.target.value)}
+//                                     required
+//                                     className="form-control"
+//                                 />
+//                                 <button type="submit" disabled={!signer} className="submit-btn register-btn">Register</Two r

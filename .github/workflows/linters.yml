@@ -234,7 +234,7 @@ jobs:
         run: npx eslint --version
 
       - name: Run ESLint
-        run: npx eslint './src/**/*.{js,jsx}'
+        run: npx eslint './src/**/*.{js,jsx}' --fix
 
   stylelint:
     name: Stylelint
@@ -252,4 +252,4 @@ jobs:
         run: npx stylelint --version
 
       - name: Run Stylelint
-        run: npx stylelint './src/**/*.{css,scss}'
+        run: npx stylelint './src/**/*.{css,scss}' --fix

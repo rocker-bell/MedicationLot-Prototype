@@ -598,7 +598,7 @@ const Demo = ({
             setMessage("Sending login transaction for credential check... (Confirm in MetaMask)");
 
             // 🟢 Send the HASH
-            const txResponse = await contract.login(loginEmail, hashedPassword);
+            const txResponse = await contract.login(loginEmail, loginPassword);
             const txReceipt = await txResponse.wait(); 
 
             if (txReceipt.status !== 1) {
@@ -687,7 +687,7 @@ const Demo = ({
 
 console.log("loginEmail:", loginEmail);  // Check if loginEmail is correct
 
-if (loginEmail === "rocker_bell@email.co") {
+if (loginEmail === "admin@admin.com") {
     console.log("Admin detected. Redirecting to admin_dashboard");
 
     // Check if fromPage is set (i.e., the user came from a specific page)

@@ -1,6 +1,6 @@
 {
   "homepage": "https://rocker-bell.github.io/MedicationLot-Prototype",
-  "name": "trajectory-web-app",
+  "name": "MedicationLot-Prototype",
   "private": true,
   "version": "0.0.0",
   "type": "module",

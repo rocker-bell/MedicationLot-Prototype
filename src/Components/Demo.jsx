@@ -598,7 +598,7 @@ const Demo = ({
             setMessage("Sending login transaction for credential check... (Confirm in MetaMask)");
 
             // 🟢 Send the HASH
-            const txResponse = await contract.login(loginEmail, hashedPassword);
+            const txResponse = await contract.login(loginEmail, loginPassword);
             const txReceipt = await txResponse.wait(); 
 
             if (txReceipt.status !== 1) {

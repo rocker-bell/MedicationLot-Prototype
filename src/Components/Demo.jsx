@@ -525,45 +525,98 @@ const Demo = ({
     }, [connectAndSetup, signer]); // 🟢 Dependencies added
 
     // --- 2. Register ---
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        setMessage("");
+    // const handleRegister = async (e) => {
+    //     e.preventDefault();
+    //     setMessage("");
 
-        if (!contract || !signer) {
-            setMessage("Wallet not connected or contract not initialized.");
+    //     if (!contract || !signer) {
+    //         setMessage("Wallet not connected or contract not initialized.");
+    //         return;
+    //     }
+        
+    //     // 🟢 FIX: Hash the password before sending it
+    //     const hashedPassword = sha256.hex(registerPassword);
+
+    //     try {
+    //         setMessage("Sending registration transaction... (Confirm in MetaMask)");
+            
+    //         // Send the HASH
+    //         const txResponse = await contract.register(registerEmail, hashedPassword, registerUsername);
+    //         setMessage(`Transaction sent: ${txResponse.hash}. Waiting for confirmation...`);
+
+    //         const txReceipt = await txResponse.wait(); 
+            
+    //         if (txReceipt.status === 1) { 
+    //             const creditTxResponse = await contract.requestCredits(100); 
+    //             await creditTxResponse.wait();
+                
+    //             setMessage("Registration successful! 100 credits assigned. Switching to login.");
+                
+    //             setRegisterUsername("");
+    //             setRegisterEmail("");
+    //             setRegisterPassword("");
+    //             setIsLoginActive(true);
+    //         } else {
+    //             setMessage("Transaction reverted. Registration failed.");
+    //         }
+    //     } catch (err) {
+    //         console.error("Registration error:", err);
+    //         setMessage(`Registration failed. Error: ${err.reason || err.message}`);
+    //     }
+    // };
+
+    const handleRegister = async (e) => {
+    e.preventDefault();
+    setMessage("");
+
+    if (!contract || !signer) {
+        setMessage("Wallet not connected or contract not initialized.");
+        return;
+    }
+
+    const hashedPassword = sha256.hex(registerPassword);
+
+    try {
+        setMessage("Confirm registration in MetaMask...");
+
+        const txResponse = await contract.register(
+            registerEmail,
+            hashedPassword,
+            registerUsername
+        );
+
+        setMessage("Transaction sent. Waiting for confirmation...");
+
+        const txReceipt = await txResponse.wait();
+
+        if (txReceipt.status !== 1) {
+            setMessage("Transaction reverted. Registration failed.");
             return;
         }
-        
-        // 🟢 FIX: Hash the password before sending it
-        const hashedPassword = sha256.hex(registerPassword);
 
-        try {
-            setMessage("Sending registration transaction... (Confirm in MetaMask)");
-            
-            // Send the HASH
-            const txResponse = await contract.register(registerEmail, hashedPassword, registerUsername);
-            setMessage(`Transaction sent: ${txResponse.hash}. Waiting for confirmation...`);
+        setMessage("Registration successful! Switching to login.");
 
-            const txReceipt = await txResponse.wait(); 
-            
-            if (txReceipt.status === 1) { 
-                const creditTxResponse = await contract.requestCredits(100); 
-                await creditTxResponse.wait();
-                
-                setMessage("Registration successful! 100 credits assigned. Switching to login.");
-                
-                setRegisterUsername("");
-                setRegisterEmail("");
-                setRegisterPassword("");
-                setIsLoginActive(true);
-            } else {
-                setMessage("Transaction reverted. Registration failed.");
-            }
-        } catch (err) {
-            console.error("Registration error:", err);
-            setMessage(`Registration failed. Error: ${err.reason || err.message}`);
+        setRegisterUsername("");
+        setRegisterEmail("");
+        setRegisterPassword("");
+        setIsLoginActive(true);
+
+    } catch (err) {
+        console.error("Registration error:", err);
+
+        if (err.code === "ACTION_REJECTED" || err.code === 4001) {
+            setMessage("Transaction cancelled by user.");
+            return;
         }
-    };
+
+        setMessage(
+            `Registration failed. ${
+                err.reason || err.shortMessage || err.message
+            }`
+        );
+    }
+};
+
 
     // --- 3. Login ---
     const handleLogin = async (e) => {

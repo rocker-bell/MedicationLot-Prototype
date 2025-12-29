@@ -753,18 +753,18 @@ console.log("loginEmail:", loginEmail);  // Check if loginEmail is correct
 //     //     navigate("/admin_dashboard", { replace: true });
 //     // }
 // } else {
-//     console.log("Non-admin detected. Handling normal login flow.");
+//     console.log("Non-admin detected. Handling normal login flow."); }
 
 //     // For non-admin users, redirect to the page they came from or fallback to /Dashboard
 //     navigate("/Dashboard", { replace: true });
-//     // if (fromPage) {
-//     //     console.log("Redirecting to:", fromPage);
-//     //     navigate(fromPage, { replace: true });
-//     // } else {
-//     //     console.log("Redirecting to Dashboard");
-//     //     navigate("/Dashboard", { replace: true });
-//     // }
-// }
+    if (fromPage) {
+        console.log("Redirecting to:", fromPage);
+        navigate(fromPage, { replace: true });
+    } else {
+        console.log("Redirecting to Dashboard");
+        navigate("/Dashboard", { replace: true });
+    }
+
 
         } catch (err) {
             console.error("Login failed:", err);
